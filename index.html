@@ -230,6 +230,13 @@
       margin-bottom: 2.5rem;
       letter-spacing: 2px;
     }
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-weight: 300;
+      font-style: italic;
+    }
     .btn-primary {
       display: inline-block;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -265,6 +272,24 @@
     }
     .btn-secondary:hover {
       background: rgba(76, 175, 80, 0.1);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+    .btn-whatsapp {
+      display: inline-block;
+      background: #25D366;
+      color: #fff;
+      padding: 0.9rem 2.25rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-whatsapp:hover {
+      background: #128C7E;
       transform: translateY(-2px);
       color: #fff;
     }
@@ -359,6 +384,45 @@
     }
 
     /* ═══════════════════════════════════════
+       VALUES SECTION
+       ═══════════════════════════════════════ */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .value-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(27, 94, 32, 0.15);
+    }
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .value-card h4 {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 0.5rem;
+    }
+    .value-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════
        PROPERTY SECTION
        ═══════════════════════════════════════ */
     .property-gallery {
@@ -445,7 +509,7 @@
     }
 
     .video-embed {
-      max-width: 560px;
+      max-width: 720px;
       margin: 3rem auto 0;
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -454,8 +518,7 @@
     }
     .video-embed iframe {
       width: 100%;
-      aspect-ratio: 9/16;
-      max-height: 500px;
+      aspect-ratio: 16/9;
       border: none;
     }
     .video-caption {
@@ -507,17 +570,6 @@
       color: var(--text-secondary);
       line-height: 1.6;
     }
-    .discount-badge {
-      display: inline-block;
-      background: rgba(212, 168, 83, 0.15);
-      color: var(--gold);
-      padding: 0.3rem 0.8rem;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-top: 0.75rem;
-    }
 
     /* ═══════════════════════════════════════
        SEASONAL CALENDAR
@@ -540,20 +592,7 @@
       text-transform: uppercase;
     }
     .calendar-bar {
-      display: grid;
-      grid-template-columns:
-        /* Jan */ 1fr
-        /* Feb */ 1fr
-        /* Mar */ 0.5fr 0.5fr
-        /* Apr */ 0.5fr 0.5fr
-        /* May */ 1fr
-        /* Jun */ 1fr
-        /* Jul */ 1fr
-        /* Aug */ 1fr
-        /* Sep */ 1fr
-        /* Oct */ 1fr
-        /* Nov */ 1fr
-        /* Dec */ 0.65fr 0.35fr;
+      display: flex;
       height: 60px;
       border-radius: var(--radius);
       overflow: hidden;
@@ -568,17 +607,32 @@
       text-transform: uppercase;
       color: rgba(0,0,0,0.7);
       transition: filter var(--transition);
+      position: relative;
     }
     .cal-segment:hover { filter: brightness(1.15); }
+    .cal-segment .cal-tooltip {
+      display: none;
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.9);
+      color: #fff;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      z-index: 10;
+    }
+    .cal-segment:hover .cal-tooltip { display: block; }
     .cal-high { background: #ef6c00; }
-    .cal-shoulder { background: #fbc02d; }
-    .cal-green { background: #66bb6a; }
-    .cal-deep { background: #2e7d32; color: rgba(255,255,255,0.8); }
+    .cal-baseline { background: #42a5f5; color: rgba(255,255,255,0.9); }
+    .cal-low { background: #66bb6a; }
     .cal-christmas { background: linear-gradient(135deg, #c62828, #d4a853); color: #fff; }
 
     .season-legend {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
       margin-top: 2rem;
     }
@@ -667,10 +721,6 @@
       color: var(--text-primary);
       line-height: 1;
     }
-    .tier-price .cents {
-      font-size: 1rem;
-      color: var(--text-muted);
-    }
     .tier-discount {
       display: inline-block;
       background: rgba(212, 168, 83, 0.15);
@@ -747,6 +797,53 @@
     }
 
     /* ═══════════════════════════════════════
+       RULES / HOW IT WORKS
+       ═══════════════════════════════════════ */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .rule-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .rule-card:hover {
+      border-color: var(--border-light);
+      background: var(--bg-card-hover);
+    }
+    .rule-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.2), rgba(76, 175, 80, 0.08));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .rule-card h4 {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+    }
+    .rule-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════
        MAINTENANCE
        ═══════════════════════════════════════ */
     .maintenance-grid {
@@ -786,39 +883,49 @@
     }
 
     /* ═══════════════════════════════════════
-       BLOCKCHAIN GOVERNANCE
+       GOVERNANCE
        ═══════════════════════════════════════ */
-    .governance-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
+    .governance-list {
+      max-width: 800px;
+      margin: 3rem auto 0;
     }
-    .gov-card {
+    .gov-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.5rem;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      text-align: center;
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
       transition: all var(--transition);
     }
-    .gov-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
+    .gov-item:hover {
+      border-color: var(--border-light);
+      background: var(--bg-card-hover);
     }
-    .gov-threshold {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      font-family: var(--font-heading);
+    .gov-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.2), rgba(76, 175, 80, 0.08));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
     }
-    .gov-card h3 {
-      margin: 0.5rem 0;
+    .gov-item h4 {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--text-primary);
+      margin-bottom: 0.3rem;
     }
-    .gov-card p {
+    .gov-item p {
+      font-size: 0.85rem;
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      line-height: 1.6;
     }
     .gov-detail {
       margin-top: 2.5rem;
@@ -890,6 +997,81 @@
     }
 
     /* ═══════════════════════════════════════
+       TARGET AUDIENCE
+       ═══════════════════════════════════════ */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .audience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .audience-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .audience-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .audience-card h4 {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 0.3rem;
+    }
+    .audience-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    /* ═══════════════════════════════════════
+       INTRANET SECTION
+       ═══════════════════════════════════════ */
+    .intranet-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .intranet-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .intranet-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .intranet-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .intranet-card h4 {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .intranet-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════
        FAQ ACCORDION
        ═══════════════════════════════════════ */
     .faq-list {
@@ -940,57 +1122,91 @@
     }
 
     /* ═══════════════════════════════════════
+       CONTACT FORM
+       ═══════════════════════════════════════ */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .contact-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition);
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .contact-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .lang-badges {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .lang-badge {
+      background: rgba(76, 175, 80, 0.1);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════
+       CLOSING BANNER
+       ═══════════════════════════════════════ */
+    .closing-banner {
+      text-align: center;
+      padding: 4rem 0;
+      background: linear-gradient(180deg, var(--bg-dark), var(--bg-section-alt));
+    }
+    .closing-banner blockquote {
+      font-family: var(--font-heading);
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: var(--gold-light);
+      font-style: italic;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════
        FOOTER
        ═══════════════════════════════════════ */
     footer {
       background: var(--bg-section-alt);
       border-top: 1px solid var(--border);
-      padding: 4rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2.5rem;
-      margin-bottom: 3rem;
-    }
-    .footer-col h3 {
-      color: var(--text-primary);
-      margin-bottom: 1.25rem;
-      font-size: 1.1rem;
-    }
-    .footer-col p, .footer-col a {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.8;
-    }
-    .footer-contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-    .footer-contact-icon {
-      width: 36px;
-      height: 36px;
-      background: rgba(27, 94, 32, 0.15);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .footer-map {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      height: 220px;
-    }
-    .footer-map iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      filter: grayscale(0.5) brightness(0.8);
+      padding: 3rem 0 2rem;
     }
     .footer-bottom {
       border-top: 1px solid var(--border);
@@ -1053,6 +1269,8 @@
     .stagger.visible > *:nth-child(10) { transition-delay: 0.5s; }
     .stagger.visible > *:nth-child(11) { transition-delay: 0.55s; }
     .stagger.visible > *:nth-child(12) { transition-delay: 0.6s; }
+    .stagger.visible > *:nth-child(13) { transition-delay: 0.65s; }
+    .stagger.visible > *:nth-child(14) { transition-delay: 0.7s; }
 
     /* ═══════════════════════════════════════
        RESPONSIVE
@@ -1095,12 +1313,15 @@
         margin: 0 auto;
       }
       .hero h1 { font-size: 2.2rem; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 480px) {
       .calendar-months span { font-size: 0.55rem; }
       .season-legend { grid-template-columns: 1fr; }
       .share-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      .contact-buttons { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
@@ -1113,10 +1334,11 @@
     <div class="container">
       <a href="#hero" class="nav-logo">El <span>Nido</span></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#vision">Vision</a></li>
+        <li><a href="#values">Values</a></li>
         <li><a href="#property">Property</a></li>
         <li><a href="#shares">Shares</a></li>
         <li><a href="#tiers">Invest</a></li>
+        <li><a href="#rules">How It Works</a></li>
         <li><a href="#benefits">Benefits</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -1132,11 +1354,15 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-badge">Fractional Ownership</div>
+      <div class="hero-badge">Fractional Ownership &mdash; Real Equity</div>
       <h1>Own a Piece of <em>Paradise</em></h1>
-      <p class="hero-price">Fractional Ownership Starting at <strong>$5,000</strong></p>
-      <p class="hero-location">El Nido &mdash; Costa Rica</p>
-      <a href="#vision" class="btn-primary">Learn More</a>
+      <p class="hero-tagline">Wake Up to Toucans, Macaws &amp; Ocean Breezes</p>
+      <p class="hero-price">Starting at <strong>$5,000</strong> &mdash; 15 points per share</p>
+      <p class="hero-location">El Nido &mdash; St. Michael's Sustainable Community, Costa Rica</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="#property" class="btn-primary">Explore the Property</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
     </div>
     <div class="hero-scroll">Scroll</div>
   </section>
@@ -1171,22 +1397,74 @@
         </div>
         <div class="vision-card">
           <div class="vision-icon">&#x1f4b0;</div>
-          <h3>Passive Income</h3>
-          <p>When you're not visiting, your unused nights are rented to travelers. Earn rental income that can offset or even exceed your annual maintenance fees.</p>
+          <h3>Rental Income</h3>
+          <p>When you're not visiting, rent your unused nights on Airbnb, VRBO, Booking, or Expedia. Or use HomeExchange ($235/year) for free stays worldwide.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════
-       3. THE PROPERTY
+       3. THELEME EL NIDO VALUES
        ═══════════════════════════════════════ -->
-  <section id="property" class="section-alt">
+  <section id="values" class="section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-subtitle">Our Foundation</span>
+        <h2>Th&eacute;l&egrave;me El Nido Values</h2>
+        <p>Our community is built on shared principles that guide how we live, build, and grow together.</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="values-grid stagger">
+        <div class="value-card">
+          <div class="value-icon">&#x1f33f;</div>
+          <h4>Love of Nature</h4>
+          <p>Deep reverence for the land, wildlife, and ecosystems we are privileged to steward</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#x1f54a;</div>
+          <h4>Autonomy</h4>
+          <p>Freedom to live on your own terms while respecting the community</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#x1f91d;</div>
+          <h4>Reciprocity</h4>
+          <p>Give and receive in equal measure &mdash; every owner contributes to the whole</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#x2728;</div>
+          <h4>Unity Consciousness</h4>
+          <p>We are all connected &mdash; to each other, to the land, and to something greater</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#x1f46b;</div>
+          <h4>Fraternity</h4>
+          <p>Brotherhood and sisterhood among owners &mdash; we look out for one another</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#x1f4ac;</div>
+          <h4>Communication</h4>
+          <p>Open, honest, and respectful dialogue is the foundation of our governance</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#x1f331;</div>
+          <h4>Permaculture</h4>
+          <p>Working with nature, not against it &mdash; sustainable design in everything we do</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       4. THE PROPERTY
+       ═══════════════════════════════════════ -->
+  <section id="property">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-subtitle">The Property</span>
-        <h2>A Sanctuary in the Jungle</h2>
-        <p>Nestled in the hills of Esterillos Este, El Nido is a fully furnished tropical retreat surrounded by a decade-old food forest, with ocean views and wildlife at your doorstep.</p>
+        <h2>EL NIDO (The Bird's Nest)</h2>
+        <p>Your Private Paradise in Costa Rica's Sustainable Community. Wake up to toucans, scarlet macaws, and ocean breezes in a fully furnished jungle retreat surrounded by a thriving food forest.</p>
         <div class="divider"></div>
       </div>
 
@@ -1197,20 +1475,20 @@
           <span class="gallery-label">The House</span>
         </div>
         <div class="gallery-item">
-          <img src="https://lh3.googleusercontent.com/d/1GTkmhe0DkPOyLCSV3yPfCv-ccU9R7UGf" alt="Ocean view teak deck" loading="lazy">
-          <span class="gallery-label">Teak Deck</span>
+          <img src="https://lh3.googleusercontent.com/d/1GTkmhe0DkPOyLCSV3yPfCv-ccU9R7UGf" alt="Ocean view deck" loading="lazy">
+          <span class="gallery-label">Ocean-View Deck</span>
         </div>
         <div class="gallery-item">
           <img src="https://lh3.googleusercontent.com/d/18VY4r97u6kSI4JFyyps0kQHniJNorAhu" alt="Aerial view of the property" loading="lazy">
           <span class="gallery-label">Aerial View</span>
         </div>
         <div class="gallery-item">
-          <img src="https://lh3.googleusercontent.com/d/1HyMkB0oVOOHPQgpMkz216sY17R0tdly8" alt="Fully equipped kitchen" loading="lazy">
-          <span class="gallery-label">Kitchen</span>
+          <img src="https://lh3.googleusercontent.com/d/1wpzboNyM_-Gwi6Yt2fc17x_QV3q6TBdj" alt="Bedroom" loading="lazy">
+          <span class="gallery-label">Bedroom</span>
         </div>
         <div class="gallery-item">
-          <img src="https://lh3.googleusercontent.com/d/1-WXmUP91dq1aekDrivHsegirRS6bREs2" alt="Living room" loading="lazy">
-          <span class="gallery-label">Living Room</span>
+          <img src="https://lh3.googleusercontent.com/d/1HyMkB0oVOOHPQgpMkz216sY17R0tdly8" alt="Fully equipped kitchen" loading="lazy">
+          <span class="gallery-label">Kitchen</span>
         </div>
         <div class="gallery-item">
           <img src="https://lh3.googleusercontent.com/d/1GtYBZidAmmnRgNxSfNOt_Sk8wGktCaGn" alt="Garden and fruit trees" loading="lazy">
@@ -1225,31 +1503,24 @@
       <!-- Key Stats -->
       <div class="property-stats stagger">
         <div class="stat-item">
-          <div class="stat-icon">&#x1f30e;</div>
-          <div>
-            <h4>2,912 m&sup2; (0.72 acres)</h4>
-            <p>Tropical fruit forest with established permaculture</p>
-          </div>
-        </div>
-        <div class="stat-item">
           <div class="stat-icon">&#x1f3e0;</div>
           <div>
-            <h4>80 m&sup2; Furnished House</h4>
-            <p>A/C, Starlink internet, fully equipped for remote work</p>
+            <h4>700 sq ft Living Space</h4>
+            <p>Fully furnished with A/C, dishwasher, and washing machine</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f305;</div>
           <div>
-            <h4>Ocean-View Teak Deck</h4>
+            <h4>200 sq ft Ocean-View Deck</h4>
             <p>Stunning Pacific sunsets from your private deck</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f34c;</div>
           <div>
-            <h4>10+ Year Food Forest</h4>
-            <p>Mangos, bananas, cacao, guanabana, papayas, jackfruit, avocado, turmeric</p>
+            <h4>Established Food Forest</h4>
+            <p>Bananas, plantains, guanabana, mangos, jackfruit, papayas, pineapples, lemons, cacao, avocados, turmeric</p>
           </div>
         </div>
         <div class="stat-item">
@@ -1263,22 +1534,67 @@
           <div class="stat-icon">&#x1f4a7;</div>
           <div>
             <h4>Triple Water Security</h4>
-            <p>Private natural spring + rainwater harvest + municipal</p>
+            <p>Community water ($10/mo) + private spring + rainwater collection</p>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">&#x1f4f6;</div>
+          <div>
+            <h4>Starlink Internet</h4>
+            <p>High-speed satellite internet &mdash; digital nomad ready</p>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">&#x1f9d8;</div>
+          <div>
+            <h4>Selvatica Eco-Retreat</h4>
+            <p>Walking distance to yoga classes and ice baths</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f3d6;</div>
           <div>
             <h4>20 min to Beaches</h4>
-            <p>45 min to Manuel Antonio National Park</p>
+            <p>45 min to Manuel Antonio &amp; Jaco</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f33f;</div>
           <div>
-            <h4>St. Michael's Community</h4>
-            <p>Part of a sustainable eco-retreat neighborhood</p>
+            <h4>St. Michael's Sustainable Community</h4>
+            <p>Part of a thriving eco-conscious neighborhood</p>
           </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">&#x1f99c;</div>
+          <div>
+            <h4>Incredible Wildlife</h4>
+            <p>Toucans, scarlet macaws, howler monkeys, white-faced monkeys, sloths</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Property Images -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem; margin-bottom:3rem;" class="fade-in">
+        <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
+          <img src="https://lh3.googleusercontent.com/d/1-WST1BNtkNpjM7FBBmGMCByMrWhxswLy" alt="Greenhouse" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          <span class="gallery-label">Greenhouse</span>
+        </div>
+        <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
+          <img src="https://lh3.googleusercontent.com/d/1jnpp0ATBgefgRQr-4AfwELXKVffLaMSP" alt="Tilapia tanks" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          <span class="gallery-label">Tilapia Tanks</span>
+        </div>
+        <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
+          <img src="https://lh3.googleusercontent.com/d/1LbpHWHTKGwVvuQB8UKz8ftR5eg6PTUCr" alt="Natural spring" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          <span class="gallery-label">Private Spring</span>
+        </div>
+        <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
+          <img src="https://lh3.googleusercontent.com/d/1EZ_QHjgq0XLRfoWUfBlJMKWoQWR8AnS5" alt="Cacao" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          <span class="gallery-label">Cacao</span>
+        </div>
+        <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
+          <img src="https://lh3.googleusercontent.com/d/109H2qhoZ9aE14jaWUJdflFQ-IpZuVJGo" alt="Bananas" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+          <span class="gallery-label">Bananas</span>
         </div>
       </div>
 
@@ -1290,9 +1606,10 @@
       </div>
       <div class="video-embed fade-in">
         <iframe
-          src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1158199799811585&show_text=false"
-          allowfullscreen="true"
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          src="https://www.youtube.com/embed/mTizEgxRkbc"
+          title="El Nido Property Tour"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
         ></iframe>
       </div>
       <p class="video-caption">A walkthrough of El Nido and its food forest</p>
@@ -1300,14 +1617,14 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       4. SHARE STRUCTURE
+       5. SHARE STRUCTURE
        ═══════════════════════════════════════ -->
-  <section id="shares">
+  <section id="shares" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-subtitle">Share Structure</span>
         <h2>Simple, Transparent Ownership</h2>
-        <p>El Nido is divided into 80 equal shares, each representing real equity in Th&eacute;l&egrave;me S.A. The founder retains 20% as a management stake.</p>
+        <p>El Nido is divided into 80 equal shares, each representing real equity in Th&eacute;l&egrave;me S.A. 15 points per share, 1,200 total (10 reserve for maintenance windows).</p>
         <div class="divider"></div>
       </div>
 
@@ -1318,14 +1635,14 @@
           <p class="share-detail">$5,000 per share<br>Real equity in the S.A.</p>
         </div>
         <div class="share-card">
-          <div class="share-number">50</div>
+          <div class="share-number">15</div>
           <div class="share-label">Points per Share / Year</div>
-          <p class="share-detail">Use for stays or earn rental income from unused points</p>
+          <p class="share-detail">1,200 total points across 80 shares (10 reserve)</p>
         </div>
         <div class="share-card">
-          <div class="share-number">20%</div>
-          <div class="share-label">Founder Stake</div>
-          <p class="share-detail">Management &amp; operations by Vaillant Gicqueau</p>
+          <div class="share-number">1,210</div>
+          <div class="share-label">Total Points / Year</div>
+          <p class="share-detail">Distributed across 365 days by 4 seasonal rates</p>
         </div>
         <div class="share-card">
           <div class="share-number">&#x26d3;</div>
@@ -1334,6 +1651,7 @@
         </div>
       </div>
 
+      <!-- Volume Discounts -->
       <div style="text-align:center; margin-top:3rem;" class="fade-in">
         <h3 style="color:var(--text-primary); margin-bottom:1.5rem;">Volume Discounts</h3>
         <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
@@ -1350,19 +1668,20 @@
             <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.25rem;">20+ shares</div>
           </div>
         </div>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1.25rem;">Example: 1 share = 15 pts = ~2 Christmas nights or 1 week in low season</p>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════
-       5. SEASONAL CALENDAR
+       6. SEASONAL CALENDAR
        ═══════════════════════════════════════ -->
-  <section id="calendar" class="section-alt">
+  <section id="calendar">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-subtitle">Seasonal Calendar</span>
         <h2>Points by Season</h2>
-        <p>Your points go further in the green season, and premium dates are priced to reflect demand. Plan your stay to maximize your investment.</p>
+        <p>Your points go further in low season, and premium dates are priced to reflect demand. Plan your stay to maximize your investment. Total: 1,210 points across 365 days.</p>
         <div class="divider"></div>
       </div>
 
@@ -1372,36 +1691,91 @@
           <span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
           <span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
         </div>
+        <!--
+          Calendar segments by day count (365 total):
+          Jan 1-4: Christmas (4 days)
+          Jan 5-31: High (27 days)
+          Feb 1-28: High (28 days)
+          Mar 1-31: High (31 days)
+          Apr 1-7: High (7 days)
+          Apr 8-30: Low (23 days)
+          May 1-31: Low (31 days)
+          Jun 1-10: Low (10 days)
+          Jun 11-30: Baseline (20 days)
+          Jul 1-31: Baseline (31 days)
+          Aug 1-31: Baseline (31 days)
+          Sep 1-6: Baseline (6 days)
+          Sep 7-30: Low (24 days)
+          Oct 1-31: Low (31 days)
+          Nov 1-20: Low (20 days)
+          Nov 21-30: Baseline (10 days)
+          Dec 1-18: Baseline (18 days)
+          Dec 19-31: Christmas (13 days)
+
+          Proportional widths as percentages of 365:
+        -->
         <div class="calendar-bar">
-          <!-- Jan 1-5: Christmas/NYE remainder, Jan 6-31: High -->
-          <div class="cal-segment cal-high" title="Jan: High Season (Jan 6+)"></div>
-          <!-- Feb: High -->
-          <div class="cal-segment cal-high" title="Feb: High Season"></div>
-          <!-- Mar first half: High -->
-          <div class="cal-segment cal-high" title="Mar (early): High Season"></div>
-          <!-- Mar second half: could be Easter/Green transition -->
-          <div class="cal-segment cal-green" title="Mar (late): Green Season"></div>
-          <!-- Apr first half: Green (post-Easter) -->
-          <div class="cal-segment cal-green" title="Apr (early): Green Season"></div>
-          <!-- Apr second half: Green -->
-          <div class="cal-segment cal-green" title="Apr (late): Green Season"></div>
-          <!-- May: Green -->
-          <div class="cal-segment cal-green" title="May: Green Season"></div>
-          <!-- Jun: Green -->
-          <div class="cal-segment cal-green" title="Jun: Green Season"></div>
-          <!-- Jul: Deep Green -->
-          <div class="cal-segment cal-deep" title="Jul: Deep Green"></div>
-          <!-- Aug: Deep Green -->
-          <div class="cal-segment cal-deep" title="Aug: Deep Green"></div>
-          <!-- Sep: Deep Green -->
-          <div class="cal-segment cal-deep" title="Sep: Deep Green"></div>
-          <!-- Oct: Deep Green -->
-          <div class="cal-segment cal-deep" title="Oct: Deep Green"></div>
-          <!-- Nov: Shoulder -->
-          <div class="cal-segment cal-shoulder" title="Nov: Shoulder Season"></div>
-          <!-- Dec 1-19: Shoulder, Dec 20-31: Christmas -->
-          <div class="cal-segment cal-shoulder" title="Dec (early): Shoulder"></div>
-          <div class="cal-segment cal-christmas" title="Dec 20-31: Christmas/NYE"></div>
+          <!-- Jan 1-4: Christmas 4d -->
+          <div class="cal-segment cal-christmas" style="flex:4;" title="Dec 19 - Jan 4: Christmas & New Year (7 pts/night)">
+            <span class="cal-tooltip">Christmas &amp; NYE: 7 pts/night</span>
+          </div>
+          <!-- Jan 5-31: High 27d -->
+          <div class="cal-segment cal-high" style="flex:27;" title="Jan 5 - Apr 7: High Season (5 pts/night)">
+            <span class="cal-tooltip">High Season: 5 pts/night</span>
+          </div>
+          <!-- Feb: High 28d -->
+          <div class="cal-segment cal-high" style="flex:28;" title="High Season">
+          </div>
+          <!-- Mar: High 31d -->
+          <div class="cal-segment cal-high" style="flex:31;" title="High Season">
+          </div>
+          <!-- Apr 1-7: High 7d -->
+          <div class="cal-segment cal-high" style="flex:7;" title="High Season">
+          </div>
+          <!-- Apr 8-30: Low 23d -->
+          <div class="cal-segment cal-low" style="flex:23;" title="Apr 8 - Jun 10: Low Season (2 pts/night)">
+            <span class="cal-tooltip">Low Season: 2 pts/night</span>
+          </div>
+          <!-- May: Low 31d -->
+          <div class="cal-segment cal-low" style="flex:31;" title="Low Season">
+          </div>
+          <!-- Jun 1-10: Low 10d -->
+          <div class="cal-segment cal-low" style="flex:10;" title="Low Season">
+          </div>
+          <!-- Jun 11-30: Baseline 20d -->
+          <div class="cal-segment cal-baseline" style="flex:20;" title="Jun 11 - Sep 6: Baseline (3 pts/night)">
+            <span class="cal-tooltip">Baseline: 3 pts/night</span>
+          </div>
+          <!-- Jul: Baseline 31d -->
+          <div class="cal-segment cal-baseline" style="flex:31;" title="Baseline">
+          </div>
+          <!-- Aug: Baseline 31d -->
+          <div class="cal-segment cal-baseline" style="flex:31;" title="Baseline">
+          </div>
+          <!-- Sep 1-6: Baseline 6d -->
+          <div class="cal-segment cal-baseline" style="flex:6;" title="Baseline">
+          </div>
+          <!-- Sep 7-30: Low 24d -->
+          <div class="cal-segment cal-low" style="flex:24;" title="Sep 7 - Nov 20: Low Season (2 pts/night)">
+            <span class="cal-tooltip">Low Season: 2 pts/night</span>
+          </div>
+          <!-- Oct: Low 31d -->
+          <div class="cal-segment cal-low" style="flex:31;" title="Low Season">
+          </div>
+          <!-- Nov 1-20: Low 20d -->
+          <div class="cal-segment cal-low" style="flex:20;" title="Low Season">
+          </div>
+          <!-- Nov 21-30: Baseline 10d -->
+          <div class="cal-segment cal-baseline" style="flex:10;" title="Nov 21 - Dec 18: Baseline (3 pts/night)">
+            <span class="cal-tooltip">Baseline: 3 pts/night</span>
+          </div>
+          <!-- Dec 1-18: Baseline 18d -->
+          <div class="cal-segment cal-baseline" style="flex:18;" title="Baseline">
+          </div>
+          <!-- Dec 19-31: Christmas 13d -->
+          <div class="cal-segment cal-christmas" style="flex:13;" title="Dec 19 - Jan 4: Christmas & New Year (7 pts/night)">
+            <span class="cal-tooltip">Christmas &amp; NYE: 7 pts/night</span>
+          </div>
         </div>
       </div>
 
@@ -1409,36 +1783,29 @@
         <div class="legend-item">
           <div class="legend-dot" style="background:linear-gradient(135deg,#c62828,#d4a853);"></div>
           <div class="legend-info">
-            <h4>Christmas / NYE</h4>
-            <p>Dec 20 &ndash; Jan 5 &bull; 25 pts/night &bull; ~$120 equiv</p>
+            <h4>Christmas &amp; New Year</h4>
+            <p>Dec 19 &ndash; Jan 4 &bull; 7 pts/night &bull; 17 days</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-dot" style="background:#ef6c00;"></div>
           <div class="legend-info">
             <h4>High Season</h4>
-            <p>Jan 6 &ndash; Easter &bull; 18 pts/night &bull; ~$90 equiv</p>
+            <p>Jan 5 &ndash; Apr 7 &bull; 5 pts/night &bull; 93 days</p>
           </div>
         </div>
         <div class="legend-item">
-          <div class="legend-dot" style="background:#fbc02d;"></div>
+          <div class="legend-dot" style="background:#42a5f5;"></div>
           <div class="legend-info">
-            <h4>Shoulder Season</h4>
-            <p>Nov 1 &ndash; Dec 19 &bull; 12 pts/night &bull; ~$65 equiv</p>
+            <h4>Baseline</h4>
+            <p>Jun 11 &ndash; Sep 6 &amp; Nov 21 &ndash; Dec 18 &bull; 3 pts/night &bull; 116 days</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-dot" style="background:#66bb6a;"></div>
           <div class="legend-info">
-            <h4>Green Season</h4>
-            <p>Easter &ndash; Jun 30 &bull; 8 pts/night &bull; ~$45 equiv</p>
-          </div>
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background:#2e7d32;"></div>
-          <div class="legend-info">
-            <h4>Deep Green</h4>
-            <p>Jul 1 &ndash; Oct 31 &bull; 6 pts/night &bull; ~$35 equiv</p>
+            <h4>Low Season</h4>
+            <p>Apr 8 &ndash; Jun 10 &amp; Sep 7 &ndash; Nov 20 &bull; 2 pts/night &bull; 139 days</p>
           </div>
         </div>
       </div>
@@ -1446,9 +1813,9 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       6. INVESTMENT TIERS
+       7. INVESTMENT TIERS
        ═══════════════════════════════════════ -->
-  <section id="tiers">
+  <section id="tiers" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-subtitle">Investment Tiers</span>
@@ -1463,8 +1830,8 @@
           <div class="tier-name">Seedling</div>
           <div class="tier-shares">1 Share</div>
           <div class="tier-price">$5,000</div>
-          <div class="tier-points"><strong>50</strong> points / year</div>
-          <div class="tier-usage">~3&ndash;5 nights in green season</div>
+          <div class="tier-points"><strong>15</strong> points / year</div>
+          <div class="tier-usage">~2 Christmas nights or ~7 low-season nights</div>
         </div>
         <!-- Grower -->
         <div class="tier-card">
@@ -1472,8 +1839,8 @@
           <div class="tier-shares">3 Shares</div>
           <div class="tier-price">$14,250</div>
           <div class="tier-discount">5% off</div>
-          <div class="tier-points"><strong>150</strong> points / year</div>
-          <div class="tier-usage">~2 weeks green season</div>
+          <div class="tier-points"><strong>45</strong> points / year</div>
+          <div class="tier-usage">~2 weeks low season</div>
         </div>
         <!-- Harvester (Featured) -->
         <div class="tier-card featured">
@@ -1481,8 +1848,8 @@
           <div class="tier-shares">5 Shares</div>
           <div class="tier-price">$23,750</div>
           <div class="tier-discount">5% off</div>
-          <div class="tier-points"><strong>250</strong> points / year</div>
-          <div class="tier-usage">~3&ndash;4 weeks mixed seasons</div>
+          <div class="tier-points"><strong>75</strong> points / year</div>
+          <div class="tier-usage">~1 month low season</div>
         </div>
         <!-- Resident -->
         <div class="tier-card">
@@ -1490,8 +1857,8 @@
           <div class="tier-shares">10 Shares</div>
           <div class="tier-price">$45,000</div>
           <div class="tier-discount">10% off</div>
-          <div class="tier-points"><strong>500</strong> points / year</div>
-          <div class="tier-usage">~1&ndash;2 months</div>
+          <div class="tier-points"><strong>150</strong> points / year</div>
+          <div class="tier-usage">~2 months mixed seasons</div>
         </div>
         <!-- Steward -->
         <div class="tier-card">
@@ -1499,8 +1866,8 @@
           <div class="tier-shares">20 Shares</div>
           <div class="tier-price">$80,000</div>
           <div class="tier-discount">20% off</div>
-          <div class="tier-points"><strong>1,000</strong> points / year</div>
-          <div class="tier-usage">~2&ndash;3+ months</div>
+          <div class="tier-points"><strong>300</strong> points / year</div>
+          <div class="tier-usage">~4+ months of stays</div>
           <div class="tier-extra">Includes board seat</div>
         </div>
       </div>
@@ -1508,7 +1875,66 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       7. TRY BEFORE YOU BUY
+       8. HOW IT WORKS (RULES)
+       ═══════════════════════════════════════ -->
+  <section id="rules">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-subtitle">How It Works</span>
+        <h2>Booking &amp; Stay Rules</h2>
+        <p>Simple, fair rules that make shared ownership work beautifully for everyone.</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="rules-grid stagger">
+        <div class="rule-card">
+          <div class="rule-icon">&#x1f4c5;</div>
+          <div>
+            <h4>2-Day Minimum Stay</h4>
+            <p>All bookings require a minimum of 2 nights to ensure a quality experience for everyone.</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon">&#x1f9f9;</div>
+          <div>
+            <h4>Cleaning Options</h4>
+            <p>Clean the property yourself, hire our recommended cleaner, or bring your own. Your choice.</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon">&#x1f4ca;</div>
+          <div>
+            <h4>Point Balance: -10 to +10</h4>
+            <p>Your balance can range from -10 to +10. Cannot book below -10. Points above +10 don't roll over to next year.</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon">&#x1f4b5;</div>
+          <div>
+            <h4>Rent Your Days</h4>
+            <p>List unused nights on Airbnb, VRBO, Booking, Expedia, or use HomeExchange ($235/year membership) for free stays worldwide.</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon">&#x1f5d3;</div>
+          <div>
+            <h4>Shared Calendar</h4>
+            <p>All owners access a shared yearly calendar. Book nights on a first-come, first-served basis.</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-icon">&#x274c;</div>
+          <div>
+            <h4>Cancellation Policy</h4>
+            <p>Cancel or modify free up to 1 month before. 50% points refunded within 1 week. None after that &mdash; unless you exchange directly with another owner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       9. TRY BEFORE YOU BUY
        ═══════════════════════════════════════ -->
   <section class="section-alt try-section">
     <div class="container">
@@ -1521,49 +1947,44 @@
 
       <div class="try-box fade-in">
         <div class="try-price">$50 <span>/ night</span></div>
-        <p class="try-detail">Nightly rate of $40 + $45 cleaning fee per stay</p>
+        <p class="try-detail">$40 accommodation + $45 cleaning fee per stay (not per night)</p>
         <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1rem;">Stay, explore, meet the community. Then decide.</p>
-        <a href="https://wa.me/14087714957?text=I'm%20interested%20in%20renting%20El%20Nido" class="btn-primary" style="margin-top:1.5rem;" target="_blank" rel="noopener">Book a Stay</a>
+        <a href="https://wa.me/14087714957?text=I'm%20interested%20in%20trying%20El%20Nido%20before%20buying" class="btn-primary" style="margin-top:1.5rem;" target="_blank" rel="noopener">Book a Trial Stay</a>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════
-       8. MAINTENANCE
+       10. MAINTENANCE
        ═══════════════════════════════════════ -->
   <section id="maintenance">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-subtitle">Maintenance</span>
         <h2>Transparent Annual Costs</h2>
-        <p>A low annual fee keeps El Nido pristine and professionally managed. Your rental income can offset or exceed this cost.</p>
+        <p>$100 per share per year &mdash; $8,000 total pool. Keeps El Nido pristine and running smoothly.</p>
         <div class="divider"></div>
       </div>
 
       <div class="maintenance-grid stagger">
         <div class="maintenance-card">
-          <h3>&#x1f4b5; $100 / share / year</h3>
-          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">That's just $8.33/month per share</p>
-          <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.5rem;">$8,000/year total pool (80 shares &times; $100)</p>
+          <h3>&#x1f4b5; What's Covered</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">$100/share/year &mdash; $8,000 total pool (80 shares)</p>
           <ul>
-            <li>Property upkeep &amp; landscaping</li>
-            <li>Community water supply</li>
+            <li>Water supply</li>
             <li>High-speed Starlink internet</li>
-            <li>Property insurance</li>
-            <li>Professional management</li>
-            <li>Cleaning between guests</li>
+            <li>Gardening once a month</li>
+            <li>Basic repairs and maintenance</li>
           </ul>
-          <p style="color:#f0883e; font-size:0.85rem; margin-top:0.75rem;"><strong>Note:</strong> Each owner pays their own electricity during their stay (metered). Water &amp; internet are covered by the collective maintenance fee.</p>
         </div>
         <div class="maintenance-card">
-          <h3>&#x1f4ca; Revenue Offset</h3>
-          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">Your shares work for you when you're away</p>
+          <h3>&#x1f331; Owner Responsibilities</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">Treat the property like your own home</p>
           <ul>
-            <li>Unused nights rented to travelers</li>
-            <li>Rental income distributed to shareholders</li>
-            <li>Can offset or exceed maintenance fee</li>
-            <li>Major renovations via shareholder vote</li>
-            <li>Full financial transparency</li>
+            <li>Pay your own electricity during stays (metered)</li>
+            <li>Keep improving the property</li>
+            <li>Pick fruits from the food forest during your stay</li>
+            <li>Leave it better than you found it</li>
           </ul>
         </div>
       </div>
@@ -1571,44 +1992,71 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       9. BLOCKCHAIN GOVERNANCE
+       11. GOVERNANCE
        ═══════════════════════════════════════ -->
   <section id="governance" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
         <span class="section-subtitle">Governance</span>
         <h2>Democracy on the Blockchain</h2>
-        <p>Every share is one vote. No backroom deals, no opaque management. All decisions are transparent, recorded on-chain, and enforced by smart contracts.</p>
+        <p>Every share is one vote. All decisions are transparent, recorded on-chain, and enforced by smart contracts.</p>
         <div class="divider"></div>
       </div>
 
-      <div class="governance-cards stagger">
-        <div class="gov-card">
-          <div class="gov-threshold">50%+</div>
-          <h3>Simple Majority</h3>
-          <p>Annual budget approval, routine operational decisions, and maintenance priorities</p>
+      <div class="governance-list stagger">
+        <div class="gov-item">
+          <div class="gov-icon">&#x1f465;</div>
+          <div>
+            <h4>New Member Buy-In</h4>
+            <p>Requires majority vote from existing members. The community chooses who joins.</p>
+          </div>
         </div>
-        <div class="gov-card">
-          <div class="gov-threshold">66.7%</div>
-          <h3>Supermajority</h3>
-          <p>Management changes, operating agreement amendments, major capital expenditures</p>
+        <div class="gov-item">
+          <div class="gov-icon">&#x1f4c8;</div>
+          <div>
+            <h4>Share Price Appreciation</h4>
+            <p>Share prices expected to rise ~10%/year, reflecting property improvements and market appreciation.</p>
+          </div>
         </div>
-        <div class="gov-card">
-          <div class="gov-threshold">75%</div>
-          <h3>Consensus</h3>
-          <p>Sale of the entire property, dissolution of the S.A., fundamental structural changes</p>
+        <div class="gov-item">
+          <div class="gov-icon">&#x1f5f3;</div>
+          <div>
+            <h4>New Assessments</h4>
+            <p>Require majority vote to approve. Once approved, assessments become mandatory for all members.</p>
+          </div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-icon">&#x1f6e1;</div>
+          <div>
+            <h4>Member Removal</h4>
+            <p>If a member is judged harmful: 67% vote triggers buyback at original purchase price.</p>
+          </div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-icon">&#x1f527;</div>
+          <div>
+            <h4>Special Improvements</h4>
+            <p>A member who makes improvements can request payment via majority vote, paid from HOA funds or special assessment.</p>
+          </div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-icon">&#x23f0;</div>
+          <div>
+            <h4>Late Dues Enforcement</h4>
+            <p>Late dues &gt;1 year: balance paid from home equity with 20% premium using last approved share price. Fractional shares tracked to 2 decimals. Balance below zero = membership terminated.</p>
+          </div>
         </div>
       </div>
 
       <div class="gov-detail fade-in">
         <span class="chain-badge">Polygon Blockchain</span>
-        <span style="color:var(--text-secondary); font-size:0.9rem;">Transparent &bull; Instant Transfers &bull; No Paperwork &bull; Immutable Record</span>
+        <span style="color:var(--text-secondary); font-size:0.9rem;">1 Share = 1 Vote &bull; Transparent &bull; Instant Transfers &bull; Immutable Record</span>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════
-       10. BENEFITS
+       12. BENEFITS
        ═══════════════════════════════════════ -->
   <section id="benefits">
     <div class="container">
@@ -1623,84 +2071,91 @@
           <div class="benefit-icon">&#x1f3e0;</div>
           <div>
             <h4>Real Equity Ownership</h4>
-            <p>Not a timeshare &mdash; actual shares in a Costa Rican corporation</p>
+            <p>Not a timeshare &mdash; actual shares in a Costa Rican corporation with real asset backing</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f91d;</div>
           <div>
             <h4>Permaculture Community</h4>
-            <p>Join like-minded people improving the food forest together</p>
+            <p>A community of permaculture lovers improving the property together</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f5f3;</div>
           <div>
-            <h4>Blockchain Governance</h4>
-            <p>Democratic decision-making, fully transparent and on-chain</p>
+            <h4>Democratic Blockchain Governance</h4>
+            <p>Every share = 1 vote. Fully transparent, on-chain decision-making</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4b8;</div>
           <div>
             <h4>Rental Income</h4>
-            <p>Earn from unused nights &mdash; your investment works while you're away</p>
+            <p>Rent unused nights on Airbnb, VRBO, Booking &mdash; your shares earn while you're away</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">&#x1f30d;</div>
+          <div>
+            <h4>HomeExchange Integration</h4>
+            <p>$235/year membership unlocks free travel worldwide using your ownership nights</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4c8;</div>
           <div>
-            <h4>8&ndash;12% Annual Appreciation</h4>
-            <p>Costa Rica property values continue to climb steadily</p>
+            <h4>~10%/Year Appreciation</h4>
+            <p>Costa Rica's Central Pacific region continues to appreciate steadily</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4dd;</div>
           <div>
             <h4>No Transfer Tax</h4>
-            <p>Share transfers via blockchain &mdash; no government transfer tax</p>
+            <p>Share transfers via blockchain &mdash; no government transfer tax on sales</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f3e8;</div>
           <div>
             <h4>Try Before You Buy</h4>
-            <p>Rent for $50/night to experience it firsthand</p>
+            <p>Rent for $50/night to experience El Nido firsthand before investing</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4f6;</div>
           <div>
             <h4>Starlink Internet</h4>
-            <p>High-speed satellite internet for remote work from the jungle</p>
+            <p>Work from paradise &mdash; high-speed satellite internet for digital nomads</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f34a;</div>
           <div>
             <h4>Year-Round Food Forest</h4>
-            <p>Mangos, bananas, cacao, guanabana, papayas, and more</p>
+            <p>Pick your own fruit &mdash; bananas, mangos, cacao, papayas, and more</p>
           </div>
         </div>
         <div class="benefit-item">
-          <div class="benefit-icon">&#x1f6b6;</div>
+          <div class="benefit-icon">&#x1f9d8;</div>
           <div>
-            <h4>Eco-Retreat Neighborhood</h4>
-            <p>Walking distance to St. Michael's sustainable community</p>
+            <h4>Walking Distance to Eco-Retreat</h4>
+            <p>Selvatica Eco-Retreat offers yoga, ice baths, and wellness programs</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4a7;</div>
           <div>
             <h4>Triple Water Security</h4>
-            <p>Private spring, rainwater collection, and municipal backup</p>
+            <p>Community supply + private spring + rainwater &mdash; never worry about water</p>
           </div>
         </div>
         <div class="benefit-item">
-          <div class="benefit-icon">&#x1f9d1;&zwj;&#x1f4bc;</div>
+          <div class="benefit-icon">&#x1f4bb;</div>
           <div>
-            <h4>Professional Management</h4>
-            <p>Hands-off ownership with experienced local management</p>
+            <h4>Owner Intranet</h4>
+            <p>Shared calendar, community updates, activities, and useful tips for owners</p>
           </div>
         </div>
       </div>
@@ -1708,7 +2163,91 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       11. FAQ
+       13. TARGET AUDIENCE
+       ═══════════════════════════════════════ -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-subtitle">Who Is This For?</span>
+        <h2>Find Your People</h2>
+        <p>El Nido attracts a diverse community united by a love of nature, sustainability, and the good life.</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="audience-grid stagger">
+        <div class="audience-card">
+          <div class="audience-icon">&#x1f4bb;</div>
+          <h4>Digital Nomads</h4>
+          <p>Seeking work-life balance with Starlink internet in paradise</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#x1f334;</div>
+          <h4>Retirees</h4>
+          <p>Ready for the Pura Vida lifestyle in warm, welcoming Costa Rica</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#x1f33f;</div>
+          <h4>Permaculture Enthusiasts</h4>
+          <p>Hands-on involvement with an established food forest and greenhouse</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#x1f496;</div>
+          <h4>Couples</h4>
+          <p>Dreaming of sustainable living together in a tropical setting</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#x1f9d8;</div>
+          <h4>Wellness Seekers</h4>
+          <p>Near yoga retreats, ice baths, and nature therapy</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#x1f99c;</div>
+          <h4>Nature Lovers</h4>
+          <p>Wildlife in your backyard &mdash; toucans, macaws, monkeys, sloths</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-icon">&#x1f4c8;</div>
+          <h4>Investors</h4>
+          <p>Costa Rica's growing Central Pacific region offers strong appreciation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       14. OWNER INTRANET
+       ═══════════════════════════════════════ -->
+  <section id="intranet">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-subtitle">Owner Intranet</span>
+        <h2>Your Digital Home Base</h2>
+        <p>All owners get access to a private intranet with everything you need to plan, connect, and enjoy.</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="intranet-features stagger">
+        <div class="intranet-card">
+          <div class="intranet-icon">&#x1f5d3;</div>
+          <h4>Reservation Calendar</h4>
+          <p>See availability at a glance and book your dates instantly on a shared calendar.</p>
+        </div>
+        <div class="intranet-card">
+          <div class="intranet-icon">&#x1f4ac;</div>
+          <h4>Community Updates &amp; Discussion</h4>
+          <p>Stay connected with fellow owners. Share updates, ideas, and coordinate improvements.</p>
+        </div>
+        <div class="intranet-card">
+          <div class="intranet-icon">&#x1f3af;</div>
+          <h4>Activities, Restaurants &amp; Tips</h4>
+          <p>Curated list of fun things to do, great restaurants within 1 hour, and useful local tips.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       15. FAQ
        ═══════════════════════════════════════ -->
   <section id="faq" class="section-alt">
     <div class="container">
@@ -1718,47 +2257,59 @@
         <div class="divider"></div>
       </div>
 
-      <div class="faq-list stagger">
+      <div class="faq-list">
         <details class="faq-item">
           <summary>Is this a timeshare?</summary>
           <div class="faq-answer">
-            <p>No. A timeshare gives you a usage license &mdash; you pay for the right to visit but own nothing. El Nido gives you real equity: shares in Th&eacute;l&egrave;me S.A., a Costa Rican corporation that owns the property. You can sell your shares anytime, earn rental income, and vote on every decision.</p>
+            No. You purchase real shares in Th&eacute;l&egrave;me S.A., a Costa Rican corporation that owns the property. This is actual equity ownership &mdash; you can sell your shares, earn appreciation, and vote on all decisions.
           </div>
         </details>
         <details class="faq-item">
-          <summary>Can I sell my shares?</summary>
+          <summary>How do points work?</summary>
           <div class="faq-answer">
-            <p>Yes. Your shares can be transferred to anyone, at any time, via blockchain. There are no transfer fees, no government transfer tax, and no complex paperwork. You set your own price on the secondary market.</p>
+            Each share comes with 15 points per year. Nights cost 2&ndash;7 points depending on season. Your point balance can range from -10 to +10. Points above +10 don't roll over. You cannot book if your balance is below -10.
           </div>
         </details>
         <details class="faq-item">
-          <summary>Do I need to be in Costa Rica?</summary>
+          <summary>Can I rent out my nights?</summary>
           <div class="faq-answer">
-            <p>Not at all. Many shareholders are remote investors who earn rental income from their points without ever visiting. You can manage everything remotely &mdash; voting, tracking income, and booking stays &mdash; all through our digital platform.</p>
+            Absolutely. You can list your unused nights on Airbnb, VRBO, Booking.com, or Expedia. You can also join HomeExchange ($235/year) to swap your nights for free stays at properties worldwide.
           </div>
         </details>
         <details class="faq-item">
-          <summary>What if I never visit?</summary>
+          <summary>How is the property governed?</summary>
           <div class="faq-answer">
-            <p>Your unused points are automatically made available for short-term rental. You earn a share of the rental income proportional to the points you contributed to the rental pool. Many shareholders treat this purely as an income-generating investment.</p>
+            Democratically via blockchain. Every share equals one vote. New members require majority approval. New assessments require majority vote. A member judged harmful can be removed with a 67% vote and bought back at original purchase price.
           </div>
         </details>
         <details class="faq-item">
-          <summary>Is this regulated?</summary>
+          <summary>What happens if I want to sell?</summary>
           <div class="faq-answer">
-            <p>Costa Rica does not have specific fractional ownership legislation. El Nido is structured as shares in a Sociedad An&oacute;nima (S.A.), the standard Costa Rican corporate entity. All shareholder rights, governance rules, and usage policies are defined in a comprehensive operating agreement signed by all shareholders.</p>
+            You can sell your shares at any time. Share transfers happen via blockchain with no government transfer tax. Share prices are expected to appreciate ~10% per year, so your investment grows over time.
           </div>
         </details>
         <details class="faq-item">
-          <summary>What are the tax implications?</summary>
+          <summary>What does the maintenance fee cover?</summary>
           <div class="faq-answer">
-            <p>Costa Rica has no capital gains tax on share sales. U.S. investors who hold more than 10% of the S.A. may need to file Form 5471 with the IRS. We recommend consulting your tax advisor for your specific situation. Rental income may be subject to Costa Rican withholding tax.</p>
+            $100/share/year covers water supply, Starlink internet, monthly gardening, and basic repairs. Each owner pays their own electricity (metered) during stays. The total pool is $8,000/year across all 80 shares.
           </div>
         </details>
         <details class="faq-item">
-          <summary>Who manages the property?</summary>
+          <summary>Can I try before I buy?</summary>
           <div class="faq-answer">
-            <p>Vaillant Gicqueau, the founder, manages day-to-day operations. Vaillant also manages Jane's Beach Resort nearby, bringing years of hospitality and property management experience to El Nido. Major decisions are always made by shareholder vote.</p>
+            Yes! Rent El Nido for $50/night ($40 accommodation + $45 cleaning fee per stay, not per night). Experience the property, meet the community, and then decide if ownership is right for you.
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>What's the cancellation policy?</summary>
+          <div class="faq-answer">
+            Cancel or modify free up to 1 month before your stay. Within 1 week of check-in, 50% of points are refunded. After that, points are not refundable unless you arrange a direct exchange with another owner.
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>Is there internet for remote work?</summary>
+          <div class="faq-answer">
+            Yes. El Nido has Starlink high-speed satellite internet, making it fully digital-nomad ready. Work from the ocean-view deck with toucans flying by.
           </div>
         </details>
       </div>
@@ -1766,110 +2317,122 @@
   </section>
 
   <!-- ═══════════════════════════════════════
-       12. FOOTER
+       16. CLOSING BANNER
        ═══════════════════════════════════════ -->
-  <footer id="contact">
+  <div class="closing-banner fade-in">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h3 style="font-family:var(--font-heading);">El <span style="color:var(--accent);">Nido</span></h3>
-          <p style="margin-bottom:1.5rem;">Own a piece of paradise in the hills of Costa Rica. Fractional ownership that's real, transparent, and community-driven.</p>
-          <div class="footer-contact-item">
-            <div class="footer-contact-icon">&#x1f4f1;</div>
-            <div>
-              <a href="https://wa.me/14087714957" target="_blank" rel="noopener" style="color:var(--text-primary); font-weight:500;">+1 (408) 771-4957</a>
-              <div style="font-size:0.78rem; color:var(--text-muted);">WhatsApp preferred</div>
-            </div>
-          </div>
-          <div class="footer-contact-item">
-            <div class="footer-contact-icon">&#x2709;</div>
-            <div>
-              <a href="mailto:vaillant@ushaia.com" style="color:var(--text-primary); font-weight:500;">vaillant@ushaia.com</a>
-            </div>
-          </div>
-          <div class="footer-contact-item">
-            <div class="footer-contact-icon">&#x1f310;</div>
-            <div>
-              <span style="color:var(--text-secondary); font-size:0.9rem;">English &bull; Espa&ntilde;ol &bull; Fran&ccedil;ais</span>
-            </div>
-          </div>
-        </div>
+      <blockquote>
+        &ldquo;This isn't just real estate &mdash; it's a lifestyle upgrade. In 10 years, you'll wish you bought this property today.&rdquo;
+      </blockquote>
+    </div>
+  </div>
 
-        <div class="footer-col">
-          <h3>Quick Links</h3>
-          <p><a href="#vision">The Vision</a></p>
-          <p><a href="#property">The Property</a></p>
-          <p><a href="#shares">Share Structure</a></p>
-          <p><a href="#tiers">Investment Tiers</a></p>
-          <p><a href="#benefits">Benefits</a></p>
-          <p><a href="#faq">FAQ</a></p>
-        </div>
-
-        <div class="footer-col">
-          <h3>Location</h3>
-          <p style="margin-bottom:1rem; font-size:0.9rem;">Esterillos Este, Puntarenas<br>Costa Rica</p>
-          <div class="footer-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d-84.5!3d9.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2scr!4v1700000000000!5m2!1sen!2scr&q=GHXP%2BQ9C+Esterillos+Este"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="El Nido location map"
-            ></iframe>
-          </div>
-        </div>
+  <!-- ═══════════════════════════════════════
+       17. CONTACT
+       ═══════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-subtitle">Get in Touch</span>
+        <h2>Ready to Own Paradise?</h2>
+        <p>Send us a message or connect on WhatsApp. We speak English, Espa&ntilde;ol, and Fran&ccedil;ais.</p>
+        <div class="divider"></div>
       </div>
 
+      <div class="contact-form fade-in">
+        <form action="https://formspree.io/f/vaillant@ushaia.com" method="POST">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your interest in El Nido..." required></textarea>
+          </div>
+          <div style="text-align:center;">
+            <button type="submit" class="btn-primary">Send Message</button>
+          </div>
+        </form>
+
+        <div class="contact-buttons">
+          <a href="https://wa.me/14087714957" class="btn-whatsapp" target="_blank" rel="noopener">
+            &#x1f4ac; Chat on WhatsApp
+          </a>
+          <a href="mailto:vaillant@ushaia.com" class="btn-secondary">
+            &#x2709; Send Email
+          </a>
+        </div>
+
+        <div class="lang-badges">
+          <span class="lang-badge">English</span>
+          <span class="lang-badge">Espa&ntilde;ol</span>
+          <span class="lang-badge">Fran&ccedil;ais</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ -->
+  <footer>
+    <div class="container">
       <div class="footer-bottom">
         <p class="footer-disclaimer">
-          Th&eacute;l&egrave;me S.A. &mdash; This is a private offering and the shares described herein are not registered securities. This page is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities in any jurisdiction where such offer or solicitation would be unlawful. Prospective investors should review the full operating agreement and consult their own legal and tax advisors.
+          El Nido Fractional Ownership is offered through Th&eacute;l&egrave;me S.A., a Costa Rican corporation. This is not a securities offering. Each share represents equity ownership in the corporation. Past property appreciation is not a guarantee of future returns. Share prices and rental income may vary. Consult a legal or financial advisor before investing.
         </p>
-        <p style="color:var(--text-muted); font-size:0.75rem; margin-top:1rem;">&copy; 2026 Th&eacute;l&egrave;me S.A. All rights reserved.</p>
+        <p style="color:var(--text-muted); font-size:0.75rem; margin-top:1rem;">&copy; 2025 Th&eacute;l&egrave;me S.A. &mdash; El Nido, St. Michael's Sustainable Community, Costa Rica</p>
       </div>
     </div>
   </footer>
 
   <!-- ═══════════════════════════════════════
-       JAVASCRIPT
+       SCRIPTS
        ═══════════════════════════════════════ -->
   <script>
-    // Nav scroll effect
+    // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
 
     // Mobile nav toggle
-    document.getElementById('navToggle').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('active');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
 
-    // Close mobile nav on link click
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('active');
-      });
-    });
-
-    // Scroll animations
+    // Intersection Observer for animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, observerOptions);
 
     document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .stagger, .hero').forEach(el => {
       observer.observe(el);
     });
 
-    // Smooth scroll for CTA
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
         }
       });
     });
