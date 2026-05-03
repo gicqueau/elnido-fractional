@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery — El Nido, Costa Rica</title>
+  <meta name="description" content="76 curated photos of El Nido — a fractional ownership property in Costa Rica's sustainable jungle community.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1b5e20;
+      --secondary: #2e7d32;
+      --accent: #4caf50;
+      --accent-light: #81c784;
+      --gold: #d4a853;
+      --gold-light: #e8c97a;
+      --bg-dark: #0a0f0a;
+      --bg-card: #111a11;
+      --bg-card-hover: #162016;
+      --bg-section-alt: #0d130d;
+      --text-primary: #e8ece8;
+      --text-secondary: #a8b8a8;
+      --text-muted: #6b7b6b;
+      --border: #1e2e1e;
+      --border-light: #2a3a2a;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --max-width: 1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--accent-light); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--gold-light); }
+    h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.2; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(10, 15, 10, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 2px 40px rgba(0,0,0,0.3);
+    }
+    nav .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-back {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color var(--transition);
+    }
+    .nav-back:hover { color: var(--text-primary); }
+
+    /* HEADER */
+    .gallery-header {
+      padding: 7rem 0 2rem;
+      text-align: center;
+    }
+    .gallery-header .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+    }
+    .gallery-header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .gallery-header h1 em { color: var(--gold-light); font-style: italic; }
+    .gallery-header p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .photo-count {
+      display: inline-block;
+      background: rgba(76, 175, 80, 0.15);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+    }
+
+    /* CATEGORY TABS */
+    .category-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      padding: 1.5rem 0 2rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding-left: clamp(1.25rem, 4vw, 2.5rem);
+      padding-right: clamp(1.25rem, 4vw, 2.5rem);
+    }
+    .cat-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.5rem 1.25rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .cat-btn:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+    .cat-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* GALLERY GRID */
+    .gallery-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2.5rem) 4rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+    .gallery-cell {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .gallery-cell:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .gallery-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-cell:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-cell .cat-label {
+      position: absolute;
+      bottom: 0.6rem;
+      left: 0.6rem;
+      background: rgba(10, 15, 10, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+    }
+    .gallery-cell.hidden {
+      display: none;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.95);
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: var(--radius);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background var(--transition);
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.1); }
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all var(--transition);
+    }
+    .lightbox-arrow:hover { background: rgba(255,255,255,0.15); }
+    .lightbox-prev { left: 1.5rem; }
+    .lightbox-next { right: 1.5rem; }
+    .lightbox-counter {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .lightbox-cat {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      background: rgba(76, 175, 80, 0.15);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+    }
+
+    /* FOOTER */
+    .gallery-footer {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .gallery-footer p {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 0.9rem 2.25rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 25px rgba(27, 94, 32, 0.4);
+      margin-bottom: 1.5rem;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 35px rgba(27, 94, 32, 0.6);
+      color: #fff;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .lightbox-arrow { width: 44px; height: 44px; font-size: 1.4rem; }
+      .lightbox-prev { left: 0.75rem; }
+      .lightbox-next { right: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="https://elnido.ushaia.com" class="nav-logo">El <span>Nido</span></a>
+      <a href="https://elnido.ushaia.com" class="nav-back">&#8592; Back to Main Site</a>
+    </div>
+  </nav>
+
+  <header class="gallery-header">
+    <div class="container">
+      <div class="photo-count">76 Curated Photos</div>
+      <h1>El Nido <em>Gallery</em></h1>
+      <p>Explore every corner of our jungle paradise in Costa Rica's sustainable community.</p>
+    </div>
+  </header>
+
+  <div class="category-tabs" id="categoryTabs">
+    <button class="cat-btn active" data-cat="all">All (76)</button>
+    <button class="cat-btn" data-cat="ocean">Ocean Views (9)</button>
+    <button class="cat-btn" data-cat="house">House & Architecture (7)</button>
+    <button class="cat-btn" data-cat="interior">Interior (15)</button>
+    <button class="cat-btn" data-cat="food-forest">Food Forest & Garden (15)</button>
+    <button class="cat-btn" data-cat="infrastructure">Infrastructure & Access (13)</button>
+    <button class="cat-btn" data-cat="panoramic">Panoramic & Aerial (3)</button>
+    <button class="cat-btn" data-cat="nature">Nature & Wildlife (3)</button>
+    <button class="cat-btn" data-cat="greenhouse">Greenhouse & Aquaponics (2)</button>
+    <button class="cat-btn" data-cat="deck">Deck & Living (1)</button>
+    <button class="cat-btn" data-cat="neighborhood">Neighborhood (1)</button>
+    <button class="cat-btn" data-cat="other">Other (11)</button>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Ocean Views (9) -->
+    <div class="gallery-cell" data-cat="ocean" data-id="1n8N3gXBmME1U3qIJ_MECn3GiBigdBlnO"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1n8N3gXBmME1U3qIJ_MECn3GiBigdBlnO=s400" data-full="https://lh3.googleusercontent.com/d/1n8N3gXBmME1U3qIJ_MECn3GiBigdBlnO=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+    <div class="gallery-cell" data-cat="ocean" data-id="1n7iPnpYTRMMoEnfuG23LyUtE_Om9fznl"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1n7iPnpYTRMMoEnfuG23LyUtE_Om9fznl=s400" data-full="https://lh3.googleusercontent.com/d/1n7iPnpYTRMMoEnfuG23LyUtE_Om9fznl=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+    <div class="gallery-cell" data-cat="ocean" data-id="1n5r1TsQf_4-KUa8mpWx4iJw1tSiDFmP7"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1n5r1TsQf_4-KUa8mpWx4iJw1tSiDFmP7=s400" data-full="https://lh3.googleusercontent.com/d/1n5r1TsQf_4-KUa8mpWx4iJw1tSiDFmP7=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+    <div class="gallery-cell" data-cat="ocean" data-id="1S66HnaIDc9rEuY8GR1StlJS9LzziShJB"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1S66HnaIDc9rEuY8GR1StlJS9LzziShJB=s400" data-full="https://lh3.googleusercontent.com/d/1S66HnaIDc9rEuY8GR1StlJS9LzziShJB=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+    <div class="gallery-cell" data-cat="ocean" data-id="1SAJzLrD97Mwgd4aGD6PZJpPcsj0X67LR"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1SAJzLrD97Mwgd4aGD6PZJpPcsj0X67LR=s400" data-full="https://lh3.googleusercontent.com/d/1SAJzLrD97Mwgd4aGD6PZJpPcsj0X67LR=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+    <div class="gallery-cell" data-cat="ocean" data-id="1A_e7rya1iN_HF-RW8CX3GzHIa_yAuLUP"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1A_e7rya1iN_HF-RW8CX3GzHIa_yAuLUP=s400" data-full="https://lh3.googleusercontent.com/d/1A_e7rya1iN_HF-RW8CX3GzHIa_yAuLUP=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+    <div class="gallery-cell" data-cat="ocean" data-id="1IclNV9mDoXy1XLYc6q6gOqsLAspF8oLk"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1IclNV9mDoXy1XLYc6q6gOqsLAspF8oLk=s400" data-full="https://lh3.googleusercontent.com/d/1IclNV9mDoXy1XLYc6q6gOqsLAspF8oLk=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+    <div class="gallery-cell" data-cat="ocean" data-id="19ZZksoQBQiiFqvbYadtE-RsxzVd_p015"><img loading="lazy" src="https://lh3.googleusercontent.com/d/19ZZksoQBQiiFqvbYadtE-RsxzVd_p015=s400" data-full="https://lh3.googleusercontent.com/d/19ZZksoQBQiiFqvbYadtE-RsxzVd_p015=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+    <div class="gallery-cell" data-cat="ocean" data-id="18VY4r97u6kSI4JFyyps0kQHniJNorAhu"><img loading="lazy" src="https://lh3.googleusercontent.com/d/18VY4r97u6kSI4JFyyps0kQHniJNorAhu=s400" data-full="https://lh3.googleusercontent.com/d/18VY4r97u6kSI4JFyyps0kQHniJNorAhu=s1200" alt="Ocean View"><span class="cat-label">Ocean Views</span></div>
+
+    <!-- House & Architecture (7) -->
+    <div class="gallery-cell" data-cat="house" data-id="1cRMvj2QpAt9n-Dg971_M65Cydr5aEYmk"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1cRMvj2QpAt9n-Dg971_M65Cydr5aEYmk=s400" data-full="https://lh3.googleusercontent.com/d/1cRMvj2QpAt9n-Dg971_M65Cydr5aEYmk=s1200" alt="House & Architecture"><span class="cat-label">House</span></div>
+    <div class="gallery-cell" data-cat="house" data-id="1w18pzfFS4AZS7wl9RYhOOHGQyeUU067x"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1w18pzfFS4AZS7wl9RYhOOHGQyeUU067x=s400" data-full="https://lh3.googleusercontent.com/d/1w18pzfFS4AZS7wl9RYhOOHGQyeUU067x=s1200" alt="House & Architecture"><span class="cat-label">House</span></div>
+    <div class="gallery-cell" data-cat="house" data-id="1Krx7_AcQfaPBrlo7A3yDLeVaHew4LYeK"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1Krx7_AcQfaPBrlo7A3yDLeVaHew4LYeK=s400" data-full="https://lh3.googleusercontent.com/d/1Krx7_AcQfaPBrlo7A3yDLeVaHew4LYeK=s1200" alt="House & Architecture"><span class="cat-label">House</span></div>
+    <div class="gallery-cell" data-cat="house" data-id="1DwPA9aX1WnMDWTAbJAEW8BB34xLs0dij"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1DwPA9aX1WnMDWTAbJAEW8BB34xLs0dij=s400" data-full="https://lh3.googleusercontent.com/d/1DwPA9aX1WnMDWTAbJAEW8BB34xLs0dij=s1200" alt="House & Architecture"><span class="cat-label">House</span></div>
+    <div class="gallery-cell" data-cat="house" data-id="1Ec9Gx6w6lN6F5UT-LK9Fm-OuVIUhbtBe"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1Ec9Gx6w6lN6F5UT-LK9Fm-OuVIUhbtBe=s400" data-full="https://lh3.googleusercontent.com/d/1Ec9Gx6w6lN6F5UT-LK9Fm-OuVIUhbtBe=s1200" alt="House & Architecture"><span class="cat-label">House</span></div>
+    <div class="gallery-cell" data-cat="house" data-id="1v32kMzpgWXGTZAT2QYMackG4mH-CjqAT"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1v32kMzpgWXGTZAT2QYMackG4mH-CjqAT=s400" data-full="https://lh3.googleusercontent.com/d/1v32kMzpgWXGTZAT2QYMackG4mH-CjqAT=s1200" alt="House & Architecture"><span class="cat-label">House</span></div>
+    <div class="gallery-cell" data-cat="house" data-id="1HZD9CC3qDgKFm_yRuKQssTBs-4vMzfOK"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1HZD9CC3qDgKFm_yRuKQssTBs-4vMzfOK=s400" data-full="https://lh3.googleusercontent.com/d/1HZD9CC3qDgKFm_yRuKQssTBs-4vMzfOK=s1200" alt="House & Architecture"><span class="cat-label">House</span></div>
+
+    <!-- Interior (15) -->
+    <div class="gallery-cell" data-cat="interior" data-id="1Yha8dNz0OuFlkwJleoSTF0zarWMYqRQr"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1Yha8dNz0OuFlkwJleoSTF0zarWMYqRQr=s400" data-full="https://lh3.googleusercontent.com/d/1Yha8dNz0OuFlkwJleoSTF0zarWMYqRQr=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1Z-n6eDqREV8fswxi4zrUHMd4hlnQBaaA"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1Z-n6eDqREV8fswxi4zrUHMd4hlnQBaaA=s400" data-full="https://lh3.googleusercontent.com/d/1Z-n6eDqREV8fswxi4zrUHMd4hlnQBaaA=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1_M3QrEAHHK5G-oWbEyJ5dnhbe8SGSouo"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1_M3QrEAHHK5G-oWbEyJ5dnhbe8SGSouo=s400" data-full="https://lh3.googleusercontent.com/d/1_M3QrEAHHK5G-oWbEyJ5dnhbe8SGSouo=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1ZpWyfMTJE5cPSmNz6G79GP2KzA25Nhlt"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1ZpWyfMTJE5cPSmNz6G79GP2KzA25Nhlt=s400" data-full="https://lh3.googleusercontent.com/d/1ZpWyfMTJE5cPSmNz6G79GP2KzA25Nhlt=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1XlqMFPcOOUtcgYVQdcZuESNY0BJw97ZB"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1XlqMFPcOOUtcgYVQdcZuESNY0BJw97ZB=s400" data-full="https://lh3.googleusercontent.com/d/1XlqMFPcOOUtcgYVQdcZuESNY0BJw97ZB=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1YT9P3B6qrOe5WpO9kR-XHVSTVPRTOT8U"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1YT9P3B6qrOe5WpO9kR-XHVSTVPRTOT8U=s400" data-full="https://lh3.googleusercontent.com/d/1YT9P3B6qrOe5WpO9kR-XHVSTVPRTOT8U=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1YKgWBbQsxbHrWbls13Q-g0O9PQKR9jQY"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1YKgWBbQsxbHrWbls13Q-g0O9PQKR9jQY=s400" data-full="https://lh3.googleusercontent.com/d/1YKgWBbQsxbHrWbls13Q-g0O9PQKR9jQY=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1YoZCTFpSFZAwwF3QhA_HL8vCAekLVV-Z"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1YoZCTFpSFZAwwF3QhA_HL8vCAekLVV-Z=s400" data-full="https://lh3.googleusercontent.com/d/1YoZCTFpSFZAwwF3QhA_HL8vCAekLVV-Z=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1ZMbsM0MkN6n6HZnJXVfSOmWIsFmSobEy"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1ZMbsM0MkN6n6HZnJXVfSOmWIsFmSobEy=s400" data-full="https://lh3.googleusercontent.com/d/1ZMbsM0MkN6n6HZnJXVfSOmWIsFmSobEy=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1Y5XZCaknwzmid8j9Zy9bXr6IGfPa1zBg"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1Y5XZCaknwzmid8j9Zy9bXr6IGfPa1zBg=s400" data-full="https://lh3.googleusercontent.com/d/1Y5XZCaknwzmid8j9Zy9bXr6IGfPa1zBg=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1Yl5NYF5SRQifjeapeG4slnl9fZt3w1B9"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1Yl5NYF5SRQifjeapeG4slnl9fZt3w1B9=s400" data-full="https://lh3.googleusercontent.com/d/1Yl5NYF5SRQifjeapeG4slnl9fZt3w1B9=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1Z3JMqnubdUUVHRUIhlPY86KXsY9steJc"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1Z3JMqnubdUUVHRUIhlPY86KXsY9steJc=s400" data-full="https://lh3.googleusercontent.com/d/1Z3JMqnubdUUVHRUIhlPY86KXsY9steJc=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1YG_E9lROljJ4rYzQWEsnSMEJH8vbOmXJ"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1YG_E9lROljJ4rYzQWEsnSMEJH8vbOmXJ=s400" data-full="https://lh3.googleusercontent.com/d/1YG_E9lROljJ4rYzQWEsnSMEJH8vbOmXJ=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1ZljKvY74kh2d93KRwdvF61Xfwl-SiTm0"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1ZljKvY74kh2d93KRwdvF61Xfwl-SiTm0=s400" data-full="https://lh3.googleusercontent.com/d/1ZljKvY74kh2d93KRwdvF61Xfwl-SiTm0=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+    <div class="gallery-cell" data-cat="interior" data-id="1_ETuYsCT8o0S8bsvywbR8yNiFy3hYnrX"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1_ETuYsCT8o0S8bsvywbR8yNiFy3hYnrX=s400" data-full="https://lh3.googleusercontent.com/d/1_ETuYsCT8o0S8bsvywbR8yNiFy3hYnrX=s1200" alt="Interior"><span class="cat-label">Interior</span></div>
+
+    <!-- Food Forest & Garden (15) -->
+    <div class="gallery-cell" data-cat="food-forest" data-id="1I7WAtK4PeIysDHFP-ZgIjne4WwMPRaOI"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1I7WAtK4PeIysDHFP-ZgIjne4WwMPRaOI=s400" data-full="https://lh3.googleusercontent.com/d/1I7WAtK4PeIysDHFP-ZgIjne4WwMPRaOI=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1ju2nnNTBKbm4nv4VLGs6Pe0_Bfpb_Ej9"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1ju2nnNTBKbm4nv4VLGs6Pe0_Bfpb_Ej9=s400" data-full="https://lh3.googleusercontent.com/d/1ju2nnNTBKbm4nv4VLGs6Pe0_Bfpb_Ej9=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1nPc6ieDySdDwZr1J60MJumh1YVKQoZ4B"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1nPc6ieDySdDwZr1J60MJumh1YVKQoZ4B=s400" data-full="https://lh3.googleusercontent.com/d/1nPc6ieDySdDwZr1J60MJumh1YVKQoZ4B=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1I0TKt01wDWm1Rfh9KFcY3XkLxMyPVzco"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1I0TKt01wDWm1Rfh9KFcY3XkLxMyPVzco=s400" data-full="https://lh3.googleusercontent.com/d/1I0TKt01wDWm1Rfh9KFcY3XkLxMyPVzco=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1fNGXiRSskQoDd18oG5bg6uiENLLNTXPr"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1fNGXiRSskQoDd18oG5bg6uiENLLNTXPr=s400" data-full="https://lh3.googleusercontent.com/d/1fNGXiRSskQoDd18oG5bg6uiENLLNTXPr=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1GtYBZidAmmnRgNxSfNOt_Sk8wGktCaGn"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1GtYBZidAmmnRgNxSfNOt_Sk8wGktCaGn=s400" data-full="https://lh3.googleusercontent.com/d/1GtYBZidAmmnRgNxSfNOt_Sk8wGktCaGn=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="14PHdGXncOMykN7gZZ-5wfE8V1q9oGDol"><img loading="lazy" src="https://lh3.googleusercontent.com/d/14PHdGXncOMykN7gZZ-5wfE8V1q9oGDol=s400" data-full="https://lh3.googleusercontent.com/d/14PHdGXncOMykN7gZZ-5wfE8V1q9oGDol=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1EZ_QHjgq0XLRfoWUfBlJMKWoQWR8AnS5"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1EZ_QHjgq0XLRfoWUfBlJMKWoQWR8AnS5=s400" data-full="https://lh3.googleusercontent.com/d/1EZ_QHjgq0XLRfoWUfBlJMKWoQWR8AnS5=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1z0OjOAOnG7F_T44M6f45qm6qfq8h83gf"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1z0OjOAOnG7F_T44M6f45qm6qfq8h83gf=s400" data-full="https://lh3.googleusercontent.com/d/1z0OjOAOnG7F_T44M6f45qm6qfq8h83gf=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="10MPkWZfM3mWanJbtM7ssSADo28WQY08O"><img loading="lazy" src="https://lh3.googleusercontent.com/d/10MPkWZfM3mWanJbtM7ssSADo28WQY08O=s400" data-full="https://lh3.googleusercontent.com/d/10MPkWZfM3mWanJbtM7ssSADo28WQY08O=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="109H2qhoZ9aE14jaWUJdflFQ-IpZuVJGo"><img loading="lazy" src="https://lh3.googleusercontent.com/d/109H2qhoZ9aE14jaWUJdflFQ-IpZuVJGo=s400" data-full="https://lh3.googleusercontent.com/d/109H2qhoZ9aE14jaWUJdflFQ-IpZuVJGo=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1GEDq9QW2bDSDLcikTCaWa9kRQfJgNueK"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1GEDq9QW2bDSDLcikTCaWa9kRQfJgNueK=s400" data-full="https://lh3.googleusercontent.com/d/1GEDq9QW2bDSDLcikTCaWa9kRQfJgNueK=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1nAlejhN2PFtB1dhs70T5bDwStagxdgsl"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1nAlejhN2PFtB1dhs70T5bDwStagxdgsl=s400" data-full="https://lh3.googleusercontent.com/d/1nAlejhN2PFtB1dhs70T5bDwStagxdgsl=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1yty4HJEbQqnQmtB-Y7xd3jT0Oll_sfdr"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1yty4HJEbQqnQmtB-Y7xd3jT0Oll_sfdr=s400" data-full="https://lh3.googleusercontent.com/d/1yty4HJEbQqnQmtB-Y7xd3jT0Oll_sfdr=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+    <div class="gallery-cell" data-cat="food-forest" data-id="1-2i_D_o5qZ3ZGurlFLgnP1Bt_h0X_9Ae"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1-2i_D_o5qZ3ZGurlFLgnP1Bt_h0X_9Ae=s400" data-full="https://lh3.googleusercontent.com/d/1-2i_D_o5qZ3ZGurlFLgnP1Bt_h0X_9Ae=s1200" alt="Food Forest"><span class="cat-label">Food Forest</span></div>
+
+    <!-- Infrastructure & Access (13) -->
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1RpOavb9fJADQpW-HFAJZbWM14WPqcEsq"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1RpOavb9fJADQpW-HFAJZbWM14WPqcEsq=s400" data-full="https://lh3.googleusercontent.com/d/1RpOavb9fJADQpW-HFAJZbWM14WPqcEsq=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1fNMYWMijQ-6qTH4KeIjbjrLSVt05i3Zf"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1fNMYWMijQ-6qTH4KeIjbjrLSVt05i3Zf=s400" data-full="https://lh3.googleusercontent.com/d/1fNMYWMijQ-6qTH4KeIjbjrLSVt05i3Zf=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1hIWe5Y_HDOL4SpWC-gPWw9v7Q50DZe2S"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1hIWe5Y_HDOL4SpWC-gPWw9v7Q50DZe2S=s400" data-full="https://lh3.googleusercontent.com/d/1hIWe5Y_HDOL4SpWC-gPWw9v7Q50DZe2S=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1d19exV3u2ECZFrssebc4spAiwenn1mr7"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1d19exV3u2ECZFrssebc4spAiwenn1mr7=s400" data-full="https://lh3.googleusercontent.com/d/1d19exV3u2ECZFrssebc4spAiwenn1mr7=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1TzjCh5fQpVU5QkbStZfxnljeRSIhTZZz"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1TzjCh5fQpVU5QkbStZfxnljeRSIhTZZz=s400" data-full="https://lh3.googleusercontent.com/d/1TzjCh5fQpVU5QkbStZfxnljeRSIhTZZz=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1XtEypBKtDW7vPkbGCLUEi3X1hxoy5c5G"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1XtEypBKtDW7vPkbGCLUEi3X1hxoy5c5G=s400" data-full="https://lh3.googleusercontent.com/d/1XtEypBKtDW7vPkbGCLUEi3X1hxoy5c5G=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1bsvatlS6-Uo3_ZeSEi6lvbfZLovgvtNv"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1bsvatlS6-Uo3_ZeSEi6lvbfZLovgvtNv=s400" data-full="https://lh3.googleusercontent.com/d/1bsvatlS6-Uo3_ZeSEi6lvbfZLovgvtNv=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1MFl0GFLnX49AK55Kgytlqv-bIlJKAu4r"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1MFl0GFLnX49AK55Kgytlqv-bIlJKAu4r=s400" data-full="https://lh3.googleusercontent.com/d/1MFl0GFLnX49AK55Kgytlqv-bIlJKAu4r=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1rI4__g34n97zeJMkU_aj3iPbQzotbMYI"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1rI4__g34n97zeJMkU_aj3iPbQzotbMYI=s400" data-full="https://lh3.googleusercontent.com/d/1rI4__g34n97zeJMkU_aj3iPbQzotbMYI=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="18-SLozi1Kcm62tdqXO5a-0rGsAy4Z_3U"><img loading="lazy" src="https://lh3.googleusercontent.com/d/18-SLozi1Kcm62tdqXO5a-0rGsAy4Z_3U=s400" data-full="https://lh3.googleusercontent.com/d/18-SLozi1Kcm62tdqXO5a-0rGsAy4Z_3U=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1SYcUGTpfD_g1EiaamdhNGo-8wxqeRbEI"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1SYcUGTpfD_g1EiaamdhNGo-8wxqeRbEI=s400" data-full="https://lh3.googleusercontent.com/d/1SYcUGTpfD_g1EiaamdhNGo-8wxqeRbEI=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1uyGTVR7scnWQHJCAezHotXZE0rOOmvzu"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1uyGTVR7scnWQHJCAezHotXZE0rOOmvzu=s400" data-full="https://lh3.googleusercontent.com/d/1uyGTVR7scnWQHJCAezHotXZE0rOOmvzu=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+    <div class="gallery-cell" data-cat="infrastructure" data-id="1LbpHWHTKGwVvuQB8UKz8ftR5eg6PTUCr"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1LbpHWHTKGwVvuQB8UKz8ftR5eg6PTUCr=s400" data-full="https://lh3.googleusercontent.com/d/1LbpHWHTKGwVvuQB8UKz8ftR5eg6PTUCr=s1200" alt="Infrastructure"><span class="cat-label">Infrastructure</span></div>
+
+    <!-- Panoramic & Aerial (3) -->
+    <div class="gallery-cell" data-cat="panoramic" data-id="1VcrX2PMdSmqWXzt-fsBDfM-_jt7QAsHm"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1VcrX2PMdSmqWXzt-fsBDfM-_jt7QAsHm=s400" data-full="https://lh3.googleusercontent.com/d/1VcrX2PMdSmqWXzt-fsBDfM-_jt7QAsHm=s1200" alt="Panoramic"><span class="cat-label">Panoramic</span></div>
+    <div class="gallery-cell" data-cat="panoramic" data-id="1D9KdTG_5dpF6mow2BPQFqSTielOKWx8d"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1D9KdTG_5dpF6mow2BPQFqSTielOKWx8d=s400" data-full="https://lh3.googleusercontent.com/d/1D9KdTG_5dpF6mow2BPQFqSTielOKWx8d=s1200" alt="Panoramic"><span class="cat-label">Panoramic</span></div>
+    <div class="gallery-cell" data-cat="panoramic" data-id="1UMI46DxogCztYlfEaABFafIea3d3DD7e"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1UMI46DxogCztYlfEaABFafIea3d3DD7e=s400" data-full="https://lh3.googleusercontent.com/d/1UMI46DxogCztYlfEaABFafIea3d3DD7e=s1200" alt="Panoramic"><span class="cat-label">Panoramic</span></div>
+
+    <!-- Nature & Wildlife (3) -->
+    <div class="gallery-cell" data-cat="nature" data-id="1sl1W8ExYLOTzYZWUSuaLeTl1CxcTmSQp"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1sl1W8ExYLOTzYZWUSuaLeTl1CxcTmSQp=s400" data-full="https://lh3.googleusercontent.com/d/1sl1W8ExYLOTzYZWUSuaLeTl1CxcTmSQp=s1200" alt="Nature & Wildlife"><span class="cat-label">Wildlife</span></div>
+    <div class="gallery-cell" data-cat="nature" data-id="1S4FSI59J5WJuieK5k12cx1hJQvmc-8ng"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1S4FSI59J5WJuieK5k12cx1hJQvmc-8ng=s400" data-full="https://lh3.googleusercontent.com/d/1S4FSI59J5WJuieK5k12cx1hJQvmc-8ng=s1200" alt="Nature & Wildlife"><span class="cat-label">Wildlife</span></div>
+    <div class="gallery-cell" data-cat="nature" data-id="1S9MlkHce1LaWdA0FxaD6GyWv1SbWar5k"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1S9MlkHce1LaWdA0FxaD6GyWv1SbWar5k=s400" data-full="https://lh3.googleusercontent.com/d/1S9MlkHce1LaWdA0FxaD6GyWv1SbWar5k=s1200" alt="Nature & Wildlife"><span class="cat-label">Wildlife</span></div>
+
+    <!-- Greenhouse & Aquaponics (2) -->
+    <div class="gallery-cell" data-cat="greenhouse" data-id="1jnpp0ATBgefgRQr-4AfwELXKVffLaMSP"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1jnpp0ATBgefgRQr-4AfwELXKVffLaMSP=s400" data-full="https://lh3.googleusercontent.com/d/1jnpp0ATBgefgRQr-4AfwELXKVffLaMSP=s1200" alt="Greenhouse"><span class="cat-label">Greenhouse</span></div>
+    <div class="gallery-cell" data-cat="greenhouse" data-id="11uJuk75RXwkBgMqrMUIPgQJZ2_gW_M-c"><img loading="lazy" src="https://lh3.googleusercontent.com/d/11uJuk75RXwkBgMqrMUIPgQJZ2_gW_M-c=s400" data-full="https://lh3.googleusercontent.com/d/11uJuk75RXwkBgMqrMUIPgQJZ2_gW_M-c=s1200" alt="Aquaponics"><span class="cat-label">Aquaponics</span></div>
+
+    <!-- Deck & Living (1) -->
+    <div class="gallery-cell" data-cat="deck" data-id="1Ttif-qMsbWEl2OOczwoO6j4c5cBeVefO"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1Ttif-qMsbWEl2OOczwoO6j4c5cBeVefO=s400" data-full="https://lh3.googleusercontent.com/d/1Ttif-qMsbWEl2OOczwoO6j4c5cBeVefO=s1200" alt="Deck & Living"><span class="cat-label">Deck</span></div>
+
+    <!-- Neighborhood (1) -->
+    <div class="gallery-cell" data-cat="neighborhood" data-id="1_hqSrZoxTCgvb5jZrG_erJ08NsAQaHrA"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1_hqSrZoxTCgvb5jZrG_erJ08NsAQaHrA=s400" data-full="https://lh3.googleusercontent.com/d/1_hqSrZoxTCgvb5jZrG_erJ08NsAQaHrA=s1200" alt="Neighborhood"><span class="cat-label">Neighborhood</span></div>
+
+    <!-- Other (11) -->
+    <div class="gallery-cell" data-cat="other" data-id="14bvSXGrRKaMln-TwFoWdpig9RbS--yV_"><img loading="lazy" src="https://lh3.googleusercontent.com/d/14bvSXGrRKaMln-TwFoWdpig9RbS--yV_=s400" data-full="https://lh3.googleusercontent.com/d/14bvSXGrRKaMln-TwFoWdpig9RbS--yV_=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="1ElNQxngMQroZx6OC3b2YbJG3RMfQFpor"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1ElNQxngMQroZx6OC3b2YbJG3RMfQFpor=s400" data-full="https://lh3.googleusercontent.com/d/1ElNQxngMQroZx6OC3b2YbJG3RMfQFpor=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="1-ia7iSuxkpmgsJ3NpAX-lJdHEnmdo99Y"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1-ia7iSuxkpmgsJ3NpAX-lJdHEnmdo99Y=s400" data-full="https://lh3.googleusercontent.com/d/1-ia7iSuxkpmgsJ3NpAX-lJdHEnmdo99Y=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="11Z0PW9zO4BCl5lcbfWR4B_LiJKRr5IBj"><img loading="lazy" src="https://lh3.googleusercontent.com/d/11Z0PW9zO4BCl5lcbfWR4B_LiJKRr5IBj=s400" data-full="https://lh3.googleusercontent.com/d/11Z0PW9zO4BCl5lcbfWR4B_LiJKRr5IBj=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="15TQ4BMMAHgpdi6YvBDi5Vqx9iMCjPKia"><img loading="lazy" src="https://lh3.googleusercontent.com/d/15TQ4BMMAHgpdi6YvBDi5Vqx9iMCjPKia=s400" data-full="https://lh3.googleusercontent.com/d/15TQ4BMMAHgpdi6YvBDi5Vqx9iMCjPKia=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="1YR_XEXT1JHSLPwMdYSqblpFnGXh6_lqr"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1YR_XEXT1JHSLPwMdYSqblpFnGXh6_lqr=s400" data-full="https://lh3.googleusercontent.com/d/1YR_XEXT1JHSLPwMdYSqblpFnGXh6_lqr=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="1S2rhlTy2XjLCtoy1i0ezKK1XNFdTDCcb"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1S2rhlTy2XjLCtoy1i0ezKK1XNFdTDCcb=s400" data-full="https://lh3.googleusercontent.com/d/1S2rhlTy2XjLCtoy1i0ezKK1XNFdTDCcb=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="1S5Z76m1aykqT0cJC192fj9pEwfFYjz_Z"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1S5Z76m1aykqT0cJC192fj9pEwfFYjz_Z=s400" data-full="https://lh3.googleusercontent.com/d/1S5Z76m1aykqT0cJC192fj9pEwfFYjz_Z=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="1lLK0cEpiluO6oZZzBlWK3U8-UK-f8-vI"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1lLK0cEpiluO6oZZzBlWK3U8-UK-f8-vI=s400" data-full="https://lh3.googleusercontent.com/d/1lLK0cEpiluO6oZZzBlWK3U8-UK-f8-vI=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="1VHpZPJqDtU5bbwss7H1gHrTszRfxllbS"><img loading="lazy" src="https://lh3.googleusercontent.com/d/1VHpZPJqDtU5bbwss7H1gHrTszRfxllbS=s400" data-full="https://lh3.googleusercontent.com/d/1VHpZPJqDtU5bbwss7H1gHrTszRfxllbS=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+    <div class="gallery-cell" data-cat="other" data-id="19Tb8tCqPX0jkHF8JY8-YKkgcXGiGyPlq"><img loading="lazy" src="https://lh3.googleusercontent.com/d/19Tb8tCqPX0jkHF8JY8-YKkgcXGiGyPlq=s400" data-full="https://lh3.googleusercontent.com/d/19Tb8tCqPX0jkHF8JY8-YKkgcXGiGyPlq=s1200" alt="El Nido"><span class="cat-label">Other</span></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose" aria-label="Close">&#x2715;</button>
+    <button class="lightbox-arrow lightbox-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <button class="lightbox-arrow lightbox-next" id="lbNext" aria-label="Next">&#8250;</button>
+    <img id="lbImg" src="" alt="Gallery photo">
+    <div class="lightbox-cat" id="lbCat"></div>
+    <div class="lightbox-counter" id="lbCounter"></div>
+  </div>
+
+  <div class="gallery-footer">
+    <a href="https://elnido.ushaia.com" class="btn-primary">Back to El Nido Main Site</a>
+    <p>&copy; 2025 Th&eacute;l&egrave;me S.A. &mdash; El Nido, St. Michael's Sustainable Community, Costa Rica</p>
+  </div>
+
+  <script>
+    // Category filtering
+    const tabs = document.querySelectorAll('.cat-btn');
+    const cells = document.querySelectorAll('.gallery-cell');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.cat;
+        cells.forEach(cell => {
+          if (cat === 'all' || cell.dataset.cat === cat) {
+            cell.classList.remove('hidden');
+          } else {
+            cell.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCat = document.getElementById('lbCat');
+    const lbCounter = document.getElementById('lbCounter');
+    let visibleCells = [];
+    let currentIndex = 0;
+
+    function getVisibleCells() {
+      return Array.from(cells).filter(c => !c.classList.contains('hidden'));
+    }
+
+    const catNames = {
+      ocean: 'Ocean Views', house: 'House & Architecture', interior: 'Interior',
+      'food-forest': 'Food Forest & Garden', infrastructure: 'Infrastructure & Access',
+      panoramic: 'Panoramic & Aerial', nature: 'Nature & Wildlife',
+      greenhouse: 'Greenhouse & Aquaponics', deck: 'Deck & Living',
+      neighborhood: 'Neighborhood', other: 'Other'
+    };
+
+    function openLightbox(index) {
+      visibleCells = getVisibleCells();
+      currentIndex = index;
+      updateLightbox();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const cell = visibleCells[currentIndex];
+      const img = cell.querySelector('img');
+      lbImg.src = img.dataset.full;
+      lbImg.alt = img.alt;
+      lbCat.textContent = catNames[cell.dataset.cat] || cell.dataset.cat;
+      lbCounter.textContent = (currentIndex + 1) + ' / ' + visibleCells.length;
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    cells.forEach(cell => {
+      cell.addEventListener('click', () => {
+        visibleCells = getVisibleCells();
+        const idx = visibleCells.indexOf(cell);
+        if (idx !== -1) openLightbox(idx);
+      });
+    });
+
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + visibleCells.length) % visibleCells.length;
+      updateLightbox();
+    });
+    document.getElementById('lbNext').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % visibleCells.length;
+      updateLightbox();
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + visibleCells.length) % visibleCells.length; updateLightbox(); }
+      if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % visibleCells.length; updateLightbox(); }
+    });
+  </script>
+</body>
+</html>
