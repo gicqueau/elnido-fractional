@@ -327,6 +327,10 @@
       .lightbox-prev { left: 0.75rem; }
       .lightbox-next { right: 0.75rem; }
     }
+    .lang-switcher { display: flex; gap: 0.15rem; align-items: center; margin-left: 0.75rem; }
+    .lang-btn { background: none; border: none; font-size: 1.4rem; cursor: pointer; opacity: 0.4; transition: opacity 0.3s, transform 0.3s; line-height: 1; padding: 2px 3px; border-radius: 4px; }
+    .lang-btn.active { opacity: 1; }
+    .lang-btn:hover { opacity: 0.85; transform: scale(1.15); }
   </style>
 </head>
 <body>
@@ -334,31 +338,38 @@
   <nav>
     <div class="container">
       <a href="https://elnido.ushaia.com" class="nav-logo">El <span>Nido</span></a>
-      <a href="https://elnido.ushaia.com" class="nav-back">&#8592; Back to Main Site</a>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en" title="English">🇺🇸</button>
+          <button class="lang-btn" data-lang="es" title="Español">🇨🇷</button>
+          <button class="lang-btn" data-lang="fr" title="Français">🇫🇷</button>
+        </div>
+        <a href="https://elnido.ushaia.com" class="nav-back" data-i18n="gal.back">&#8592; Back to Main Site</a>
+      </div>
     </div>
   </nav>
 
   <header class="gallery-header">
     <div class="container">
-      <div class="photo-count">76 Curated Photos</div>
-      <h1>El Nido <em>Gallery</em></h1>
-      <p>Explore every corner of our jungle paradise in Costa Rica's sustainable community.</p>
+      <div class="photo-count" data-i18n="gal.count">76 Curated Photos</div>
+      <h1 data-i18n="gal.title">El Nido <em>Gallery</em></h1>
+      <p data-i18n="gal.sub">Explore every corner of our jungle paradise in Costa Rica's sustainable community.</p>
     </div>
   </header>
 
   <div class="category-tabs" id="categoryTabs">
-    <button class="cat-btn active" data-cat="all">All (76)</button>
-    <button class="cat-btn" data-cat="ocean">Ocean Views (9)</button>
-    <button class="cat-btn" data-cat="house">House & Architecture (7)</button>
-    <button class="cat-btn" data-cat="interior">Interior (15)</button>
-    <button class="cat-btn" data-cat="food-forest">Food Forest & Garden (15)</button>
-    <button class="cat-btn" data-cat="infrastructure">Infrastructure & Access (13)</button>
-    <button class="cat-btn" data-cat="panoramic">Panoramic & Aerial (3)</button>
-    <button class="cat-btn" data-cat="nature">Nature & Wildlife (3)</button>
-    <button class="cat-btn" data-cat="greenhouse">Greenhouse & Aquaponics (2)</button>
-    <button class="cat-btn" data-cat="deck">Deck & Living (1)</button>
-    <button class="cat-btn" data-cat="neighborhood">Neighborhood (1)</button>
-    <button class="cat-btn" data-cat="other">Other (11)</button>
+    <button class="cat-btn active" data-cat="all" data-i18n="gal.cat.all">All (76)</button>
+    <button class="cat-btn" data-cat="ocean" data-i18n="gal.cat.ocean">Ocean Views (9)</button>
+    <button class="cat-btn" data-cat="house" data-i18n="gal.cat.house">House & Architecture (7)</button>
+    <button class="cat-btn" data-cat="interior" data-i18n="gal.cat.interior">Interior (15)</button>
+    <button class="cat-btn" data-cat="food-forest" data-i18n="gal.cat.forest">Food Forest & Garden (15)</button>
+    <button class="cat-btn" data-cat="infrastructure" data-i18n="gal.cat.infra">Infrastructure & Access (13)</button>
+    <button class="cat-btn" data-cat="panoramic" data-i18n="gal.cat.pan">Panoramic & Aerial (3)</button>
+    <button class="cat-btn" data-cat="nature" data-i18n="gal.cat.nature">Nature & Wildlife (3)</button>
+    <button class="cat-btn" data-cat="greenhouse" data-i18n="gal.cat.green">Greenhouse & Aquaponics (2)</button>
+    <button class="cat-btn" data-cat="deck" data-i18n="gal.cat.deck">Deck & Living (1)</button>
+    <button class="cat-btn" data-cat="neighborhood" data-i18n="gal.cat.hood">Neighborhood (1)</button>
+    <button class="cat-btn" data-cat="other" data-i18n="gal.cat.other">Other (11)</button>
   </div>
 
   <div class="gallery-grid" id="galleryGrid">
@@ -476,8 +487,8 @@
   </div>
 
   <div class="gallery-footer">
-    <a href="https://elnido.ushaia.com" class="btn-primary">Back to El Nido Main Site</a>
-    <p>&copy; 2025 Th&eacute;l&egrave;me S.A. &mdash; El Nido, St. Michael's Sustainable Community, Costa Rica</p>
+    <a href="https://elnido.ushaia.com" class="btn-primary" data-i18n="gal.btn">Back to El Nido Main Site</a>
+    <p data-i18n="gal.footer">&copy; 2025 Th&eacute;l&egrave;me S.A. &mdash; El Nido, St. Michael's Sustainable Community, Costa Rica</p>
   </div>
 
   <script>
@@ -572,5 +583,6 @@
       if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % visibleCells.length; updateLightbox(); }
     });
   </script>
+  <script src="i18n.js"></script>
 </body>
 </html>

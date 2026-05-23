@@ -1323,6 +1323,29 @@
       .values-grid { grid-template-columns: 1fr; }
       .contact-buttons { flex-direction: column; align-items: center; }
     }
+
+    /* ═══════════════════════════════════════
+       LANGUAGE SWITCHER
+       ═══════════════════════════════════════ */
+    .lang-switcher {
+      display: flex;
+      gap: 0.15rem;
+      align-items: center;
+      margin-left: 0.75rem;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      opacity: 0.4;
+      transition: opacity var(--transition), transform var(--transition);
+      line-height: 1;
+      padding: 2px 3px;
+      border-radius: 4px;
+    }
+    .lang-btn.active { opacity: 1; }
+    .lang-btn:hover { opacity: 0.85; transform: scale(1.15); }
   </style>
 </head>
 <body>
@@ -1334,17 +1357,22 @@
     <div class="container">
       <a href="#hero" class="nav-logo">El <span>Nido</span></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#values">Values</a></li>
-        <li><a href="#property">Property</a></li>
-        <li><a href="#activities">Activities</a></li>
-        <li><a href="#shares">Shares</a></li>
-        <li><a href="#tiers">Invest</a></li>
-        <li><a href="#rules">How It Works</a></li>
-        <li><a href="#benefits">Benefits</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
+        <li><a href="#values" data-i18n="nav.values">Values</a></li>
+        <li><a href="#property" data-i18n="nav.property">Property</a></li>
+        <li><a href="#activities" data-i18n="nav.activities">Activities</a></li>
+        <li><a href="#shares" data-i18n="nav.shares">Shares</a></li>
+        <li><a href="#tiers" data-i18n="nav.invest">Invest</a></li>
+        <li><a href="#rules" data-i18n="nav.rules">How It Works</a></li>
+        <li><a href="#benefits" data-i18n="nav.benefits">Benefits</a></li>
+        <li><a href="gallery.html" data-i18n="nav.gallery">Gallery</a></li>
+        <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
       </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en" title="English">🇺🇸</button>
+        <button class="lang-btn" data-lang="es" title="Español">🇨🇷</button>
+        <button class="lang-btn" data-lang="fr" title="Français">🇫🇷</button>
+      </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     </div>
   </nav>
@@ -1356,17 +1384,17 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-badge">Fractional Ownership &mdash; Real Equity</div>
-      <h1>Own a Piece of <em>Paradise</em></h1>
-      <p class="hero-tagline">Wake Up to Toucans, Macaws &amp; Ocean Breezes</p>
-      <p class="hero-price">Starting at <strong>$5,000</strong> &mdash; 15 points per share</p>
-      <p class="hero-location">El Nido &mdash; St. Michael's Sustainable Community, Costa Rica</p>
+      <div class="hero-badge" data-i18n="hero.badge">Fractional Ownership &mdash; Real Equity</div>
+      <h1 data-i18n="hero.h1">Own a Piece of <em>Paradise</em></h1>
+      <p class="hero-tagline" data-i18n="hero.tagline">Wake Up to Toucans, Macaws &amp; Ocean Breezes</p>
+      <p class="hero-price" data-i18n="hero.price">Starting at <strong>$5,000</strong> &mdash; 15 points per share</p>
+      <p class="hero-location" data-i18n="hero.location">El Nido &mdash; St. Michael's Sustainable Community, Costa Rica</p>
       <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-        <a href="#property" class="btn-primary">Explore the Property</a>
-        <a href="#contact" class="btn-secondary">Get in Touch</a>
+        <a href="#property" class="btn-primary" data-i18n="hero.btn1">Explore the Property</a>
+        <a href="#contact" class="btn-secondary" data-i18n="hero.btn2">Get in Touch</a>
       </div>
     </div>
-    <div class="hero-scroll">Scroll</div>
+    <div class="hero-scroll" data-i18n="hero.scroll">Scroll</div>
   </section>
 
   <!-- ═══════════════════════════════════════
@@ -1375,42 +1403,42 @@
   <section id="vision">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">The Vision</span>
-        <h2>Not a Timeshare. <em>Real Ownership.</em></h2>
-        <p>El Nido is a new model for property ownership &mdash; one where a community of like-minded individuals holds real equity in a thriving tropical property, governed democratically through blockchain.</p>
+        <span class="section-subtitle" data-i18n="vision.subtitle">The Vision</span>
+        <h2 data-i18n="vision.h2">Not a Timeshare. <em>Real Ownership.</em></h2>
+        <p data-i18n="vision.p">El Nido is a new model for property ownership &mdash; one where a community of like-minded individuals holds real equity in a thriving tropical property, governed democratically through blockchain.</p>
         <div class="divider"></div>
       </div>
 
       <div class="vision-grid stagger">
         <div class="vision-card">
           <div class="vision-icon">&#x1f4c8;</div>
-          <h3>Real Equity</h3>
-          <p>You purchase shares of Th&eacute;l&egrave;me S.A., a Costa Rican corporation. Each share represents real, transferable equity &mdash; not a usage license. Your investment appreciates with the property.</p>
+          <h3 data-i18n="vision.c1.h3">Real Equity</h3>
+          <p data-i18n="vision.c1.p">You purchase shares of Th&eacute;l&egrave;me S.A., a Costa Rican corporation. Each share represents real, transferable equity &mdash; not a usage license. Your investment appreciates with the property.</p>
         </div>
         <div class="vision-card">
           <div class="vision-icon">&#x1f5f3;</div>
-          <h3>Democratic Governance</h3>
-          <p>Every decision is made by shareholders, enforced through blockchain. One share, one vote. Budget approvals, management changes, property improvements &mdash; the community decides together.</p>
+          <h3 data-i18n="vision.c2.h3">Democratic Governance</h3>
+          <p data-i18n="vision.c2.p">Every decision is made by shareholders, enforced through blockchain. One share, one vote. Budget approvals, management changes, property improvements &mdash; the community decides together.</p>
         </div>
         <div class="vision-card">
           <div class="vision-icon">&#x1f331;</div>
-          <h3>Living Community</h3>
-          <p>Join a community of permaculture enthusiasts, remote workers, and nature lovers who are actively improving the property, expanding the food forest, and building something meaningful together.</p>
+          <h3 data-i18n="vision.c3.h3">Living Community</h3>
+          <p data-i18n="vision.c3.p">Join a community of permaculture enthusiasts, remote workers, and nature lovers who are actively improving the property, expanding the food forest, and building something meaningful together.</p>
         </div>
         <div class="vision-card">
           <div class="vision-icon">&#x1f4b0;</div>
-          <h3>Rental Income</h3>
-          <p>When you're not visiting, rent your unused nights on Airbnb, VRBO, Booking, or Expedia. Or use HomeExchange ($235/year) for free stays worldwide.</p>
+          <h3 data-i18n="vision.c4.h3">Rental Income</h3>
+          <p data-i18n="vision.c4.p">When you're not visiting, rent your unused nights on Airbnb, VRBO, Booking, or Expedia. Or use HomeExchange ($235/year) for free stays worldwide.</p>
         </div>
         <div class="vision-card">
           <div class="vision-icon">&#x1f34e;</div>
-          <h3>Eat from the Land</h3>
-          <p>Our established food forest provides fresh tropical fruit year-round. Three aquaponics tanks raise tilapia, and a greenhouse grows vegetables. Self-sufficiency at its finest.</p>
+          <h3 data-i18n="vision.c5.h3">Eat from the Land</h3>
+          <p data-i18n="vision.c5.p">Our established food forest provides fresh tropical fruit year-round. Three aquaponics tanks raise tilapia, and a greenhouse grows vegetables. Self-sufficiency at its finest.</p>
         </div>
         <div class="vision-card">
           <div class="vision-icon">&#x1f4cd;</div>
-          <h3>Premium Location</h3>
-          <p>20 minutes to pristine Pacific beaches. 45 minutes to Manuel Antonio &mdash; one of the world's most beautiful national parks. Walking distance to Selvatica eco-retreat. The best of jungle AND beach.</p>
+          <h3 data-i18n="vision.c6.h3">Premium Location</h3>
+          <p data-i18n="vision.c6.p">20 minutes to pristine Pacific beaches. 45 minutes to Manuel Antonio &mdash; one of the world's most beautiful national parks. Walking distance to Selvatica eco-retreat. The best of jungle AND beach.</p>
         </div>
       </div>
     </div>
@@ -1422,62 +1450,62 @@
   <section id="values" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Our Foundation</span>
-        <h2>Th&eacute;l&egrave;me El Nido Values</h2>
-        <p>Our community is built on shared principles that guide how we live, build, and grow together.</p>
+        <span class="section-subtitle" data-i18n="values.subtitle">Our Foundation</span>
+        <h2 data-i18n="values.h2">Th&eacute;l&egrave;me El Nido Values</h2>
+        <p data-i18n="values.p">Our community is built on shared principles that guide how we live, build, and grow together.</p>
         <div class="divider"></div>
       </div>
 
       <div class="values-grid stagger">
         <div class="value-card">
           <div class="value-icon">&#x1f33f;</div>
-          <h4>Love of Nature</h4>
-          <p>Deep reverence for the land, wildlife, and ecosystems we are privileged to steward</p>
+          <h4 data-i18n="values.v1.h4">Love of Nature</h4>
+          <p data-i18n="values.v1.p">Deep reverence for the land, wildlife, and ecosystems we are privileged to steward</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1f54a;</div>
-          <h4>Autonomy</h4>
-          <p>Freedom to live on your own terms while respecting the community</p>
+          <h4 data-i18n="values.v2.h4">Autonomy</h4>
+          <p data-i18n="values.v2.p">Freedom to live on your own terms while respecting the community</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1f91d;</div>
-          <h4>Reciprocity</h4>
-          <p>Give and receive in equal measure &mdash; every owner contributes to the whole</p>
+          <h4 data-i18n="values.v3.h4">Reciprocity</h4>
+          <p data-i18n="values.v3.p">Give and receive in equal measure &mdash; every owner contributes to the whole</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x2728;</div>
-          <h4>Unity Consciousness</h4>
-          <p>We are all connected &mdash; to each other, to the land, and to something greater</p>
+          <h4 data-i18n="values.v4.h4">Unity Consciousness</h4>
+          <p data-i18n="values.v4.p">We are all connected &mdash; to each other, to the land, and to something greater</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1f46b;</div>
-          <h4>Fraternity</h4>
-          <p>Brotherhood and sisterhood among owners &mdash; we look out for one another</p>
+          <h4 data-i18n="values.v5.h4">Fraternity</h4>
+          <p data-i18n="values.v5.p">Brotherhood and sisterhood among owners &mdash; we look out for one another</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1f4ac;</div>
-          <h4>Communication</h4>
-          <p>Open, honest, and respectful dialogue is the foundation of our governance</p>
+          <h4 data-i18n="values.v6.h4">Communication</h4>
+          <p data-i18n="values.v6.p">Open, honest, and respectful dialogue is the foundation of our governance</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1f331;</div>
-          <h4>Permaculture</h4>
-          <p>Working with nature, not against it &mdash; sustainable design in everything we do</p>
+          <h4 data-i18n="values.v7.h4">Permaculture</h4>
+          <p data-i18n="values.v7.p">Working with nature, not against it &mdash; sustainable design in everything we do</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1f3cb;</div>
-          <h4>Healthy Lifestyle</h4>
-          <p>Fresh food from the garden, yoga at Selvatica, ocean swimming, jungle hiking, clean mountain air. Swap processed food and screens for nature's pharmacy.</p>
+          <h4 data-i18n="values.v8.h4">Healthy Lifestyle</h4>
+          <p data-i18n="values.v8.p">Fresh food from the garden, yoga at Selvatica, ocean swimming, jungle hiking, clean mountain air. Swap processed food and screens for nature's pharmacy.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1f3d8;</div>
-          <h4>Community</h4>
-          <p>Part of two thriving sustainable communities: Costa Vida (luxury eco-residences next door) and St. Michael's (established permaculture neighborhood). Regular gatherings, shared values, lifelong friendships.</p>
+          <h4 data-i18n="values.v9.h4">Community</h4>
+          <p data-i18n="values.v9.p">Part of two thriving sustainable communities: Costa Vida (luxury eco-residences next door) and St. Michael's (established permaculture neighborhood). Regular gatherings, shared values, lifelong friendships.</p>
         </div>
         <div class="value-card">
           <div class="value-icon">&#x1f30d;</div>
-          <h4>The New Earth</h4>
-          <p>Be part of a movement toward regenerative living. Every tree planted, every meal harvested, every decision made by consensus moves us closer to what the world can be.</p>
+          <h4 data-i18n="values.v10.h4">The New Earth</h4>
+          <p data-i18n="values.v10.p">Be part of a movement toward regenerative living. Every tree planted, every meal harvested, every decision made by consensus moves us closer to what the world can be.</p>
         </div>
       </div>
     </div>
@@ -1489,9 +1517,9 @@
   <section id="property">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">The Property</span>
-        <h2>EL NIDO (The Bird's Nest)</h2>
-        <p>Your Private Paradise in Costa Rica's Sustainable Community. Wake up to toucans, scarlet macaws, and ocean breezes in a fully furnished jungle retreat surrounded by a thriving food forest.</p>
+        <span class="section-subtitle" data-i18n="prop.subtitle">The Property</span>
+        <h2 data-i18n="prop.h2">EL NIDO (The Bird's Nest)</h2>
+        <p data-i18n="prop.p">Your Private Paradise in Costa Rica's Sustainable Community. Wake up to toucans, scarlet macaws, and ocean breezes in a fully furnished jungle retreat surrounded by a thriving food forest.</p>
         <div class="divider"></div>
       </div>
 
@@ -1499,31 +1527,31 @@
       <div class="property-gallery fade-in">
         <div class="gallery-item span-2">
           <img src="https://lh3.googleusercontent.com/d/1v32kMzpgWXGTZAT2QYMackG4mH-CjqAT" alt="El Nido house in the jungle" loading="lazy">
-          <span class="gallery-label">The House</span>
+          <span class="gallery-label" data-i18n="prop.lbl.house">The House</span>
         </div>
         <div class="gallery-item">
           <img src="https://lh3.googleusercontent.com/d/1GTkmhe0DkPOyLCSV3yPfCv-ccU9R7UGf" alt="Ocean view deck" loading="lazy">
-          <span class="gallery-label">Ocean-View Deck</span>
+          <span class="gallery-label" data-i18n="prop.lbl.deck">Ocean-View Deck</span>
         </div>
         <div class="gallery-item">
           <img src="https://lh3.googleusercontent.com/d/18VY4r97u6kSI4JFyyps0kQHniJNorAhu" alt="Aerial view of the property" loading="lazy">
-          <span class="gallery-label">Aerial View</span>
+          <span class="gallery-label" data-i18n="prop.lbl.aerial">Aerial View</span>
         </div>
         <div class="gallery-item">
           <img src="https://lh3.googleusercontent.com/d/1wpzboNyM_-Gwi6Yt2fc17x_QV3q6TBdj" alt="Bedroom" loading="lazy">
-          <span class="gallery-label">Bedroom</span>
+          <span class="gallery-label" data-i18n="prop.lbl.bedroom">Bedroom</span>
         </div>
         <div class="gallery-item">
           <img src="https://lh3.googleusercontent.com/d/1HyMkB0oVOOHPQgpMkz216sY17R0tdly8" alt="Fully equipped kitchen" loading="lazy">
-          <span class="gallery-label">Kitchen</span>
+          <span class="gallery-label" data-i18n="prop.lbl.kitchen">Kitchen</span>
         </div>
         <div class="gallery-item">
           <img src="https://lh3.googleusercontent.com/d/1GtYBZidAmmnRgNxSfNOt_Sk8wGktCaGn" alt="Garden and fruit trees" loading="lazy">
-          <span class="gallery-label">Food Forest</span>
+          <span class="gallery-label" data-i18n="prop.lbl.forest">Food Forest</span>
         </div>
         <div class="gallery-item">
           <img src="https://lh3.googleusercontent.com/d/1mLLZt5rZcFxBgl0r-LuzuNbxZPmC0nMI" alt="Toucan from the balcony" loading="lazy">
-          <span class="gallery-label">Wildlife</span>
+          <span class="gallery-label" data-i18n="prop.lbl.wildlife">Wildlife</span>
         </div>
       </div>
 
@@ -1532,71 +1560,71 @@
         <div class="stat-item">
           <div class="stat-icon">&#x1f3e0;</div>
           <div>
-            <h4>700 sq ft Living Space</h4>
-            <p>Fully furnished with A/C, dishwasher, and washing machine</p>
+            <h4 data-i18n="prop.s1.h4">700 sq ft Living Space</h4>
+            <p data-i18n="prop.s1.p">Fully furnished with A/C, dishwasher, and washing machine</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f305;</div>
           <div>
-            <h4>200 sq ft Ocean-View Deck</h4>
-            <p>Stunning Pacific sunsets from your private deck</p>
+            <h4 data-i18n="prop.s2.h4">200 sq ft Ocean-View Deck</h4>
+            <p data-i18n="prop.s2.p">Stunning Pacific sunsets from your private deck</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f34c;</div>
           <div>
-            <h4>Established Food Forest</h4>
-            <p>Bananas, plantains, guanabana, mangos, jackfruit, papayas, pineapples, lemons, cacao, avocados, turmeric</p>
+            <h4 data-i18n="prop.s3.h4">Established Food Forest</h4>
+            <p data-i18n="prop.s3.p">Bananas, plantains, guanabana, mangos, jackfruit, papayas, pineapples, lemons, cacao, avocados, turmeric</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f41f;</div>
           <div>
-            <h4>3 Tilapia Tanks + Greenhouse</h4>
-            <p>Automated aquaponics and greenhouse food production</p>
+            <h4 data-i18n="prop.s4.h4">3 Tilapia Tanks + Greenhouse</h4>
+            <p data-i18n="prop.s4.p">Automated aquaponics and greenhouse food production</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f4a7;</div>
           <div>
-            <h4>Triple Water Security</h4>
-            <p>Community water ($10/mo) + private spring + rainwater collection</p>
+            <h4 data-i18n="prop.s5.h4">Triple Water Security</h4>
+            <p data-i18n="prop.s5.p">Community water ($10/mo) + private spring + rainwater collection</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f4f6;</div>
           <div>
-            <h4>Starlink Internet</h4>
-            <p>High-speed satellite internet &mdash; digital nomad ready</p>
+            <h4 data-i18n="prop.s6.h4">Starlink Internet</h4>
+            <p data-i18n="prop.s6.p">High-speed satellite internet &mdash; digital nomad ready</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f9d8;</div>
           <div>
-            <h4>Selvatica Eco-Retreat</h4>
-            <p>Walking distance to yoga classes and ice baths</p>
+            <h4 data-i18n="prop.s7.h4">Selvatica Eco-Retreat</h4>
+            <p data-i18n="prop.s7.p">Walking distance to yoga classes and ice baths</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f3d6;</div>
           <div>
-            <h4>20 min to Beaches</h4>
-            <p>45 min to Manuel Antonio &amp; Jaco</p>
+            <h4 data-i18n="prop.s8.h4">20 min to Beaches</h4>
+            <p data-i18n="prop.s8.p">45 min to Manuel Antonio &amp; Jaco</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f33f;</div>
           <div>
-            <h4>St. Michael's Sustainable Community</h4>
-            <p>Part of a thriving eco-conscious neighborhood</p>
+            <h4 data-i18n="prop.s9.h4">St. Michael's Sustainable Community</h4>
+            <p data-i18n="prop.s9.p">Part of a thriving eco-conscious neighborhood</p>
           </div>
         </div>
         <div class="stat-item">
           <div class="stat-icon">&#x1f99c;</div>
           <div>
-            <h4>Incredible Wildlife</h4>
-            <p>Toucans, scarlet macaws, howler monkeys, white-faced monkeys, sloths</p>
+            <h4 data-i18n="prop.s10.h4">Incredible Wildlife</h4>
+            <p data-i18n="prop.s10.p">Toucans, scarlet macaws, howler monkeys, white-faced monkeys, sloths</p>
           </div>
         </div>
       </div>
@@ -1605,23 +1633,23 @@
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem; margin-bottom:3rem;" class="fade-in">
         <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
           <img src="https://lh3.googleusercontent.com/d/1-WST1BNtkNpjM7FBBmGMCByMrWhxswLy" alt="Greenhouse" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          <span class="gallery-label">Greenhouse</span>
+          <span class="gallery-label" data-i18n="prop.lbl.greenhouse">Greenhouse</span>
         </div>
         <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
           <img src="https://lh3.googleusercontent.com/d/1jnpp0ATBgefgRQr-4AfwELXKVffLaMSP" alt="Tilapia tanks" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          <span class="gallery-label">Tilapia Tanks</span>
+          <span class="gallery-label" data-i18n="prop.lbl.tilapia">Tilapia Tanks</span>
         </div>
         <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
           <img src="https://lh3.googleusercontent.com/d/1LbpHWHTKGwVvuQB8UKz8ftR5eg6PTUCr" alt="Natural spring" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          <span class="gallery-label">Private Spring</span>
+          <span class="gallery-label" data-i18n="prop.lbl.spring">Private Spring</span>
         </div>
         <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
           <img src="https://lh3.googleusercontent.com/d/1EZ_QHjgq0XLRfoWUfBlJMKWoQWR8AnS5" alt="Cacao" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          <span class="gallery-label">Cacao</span>
+          <span class="gallery-label" data-i18n="prop.lbl.cacao">Cacao</span>
         </div>
         <div class="gallery-item" style="border-radius:var(--radius); overflow:hidden; height:180px;">
           <img src="https://lh3.googleusercontent.com/d/109H2qhoZ9aE14jaWUJdflFQ-IpZuVJGo" alt="Bananas" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-          <span class="gallery-label">Bananas</span>
+          <span class="gallery-label" data-i18n="prop.lbl.bananas">Bananas</span>
         </div>
       </div>
 
@@ -1630,15 +1658,15 @@
         <div style="position:relative; border-radius:var(--radius-lg); overflow:hidden;">
           <img src="https://lh3.googleusercontent.com/d/1S66HnaIDc9rEuY8GR1StlJS9LzziShJB" alt="View to the Ocean" loading="lazy" style="width:100%;height:280px;object-fit:cover;">
           <div style="padding:1rem; background:var(--bg-card); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius-lg) var(--radius-lg);">
-            <h4 style="font-family:var(--font-heading); color:var(--text-primary); font-size:1.1rem;">View to the Ocean</h4>
-            <p style="color:var(--text-secondary); font-size:0.85rem;">Pacific ocean views from the property</p>
+            <h4 style="font-family:var(--font-heading); color:var(--text-primary); font-size:1.1rem;" data-i18n="prop.f1.h4">View to the Ocean</h4>
+            <p style="color:var(--text-secondary); font-size:0.85rem;" data-i18n="prop.f1.p">Pacific ocean views from the property</p>
           </div>
         </div>
         <div style="position:relative; border-radius:var(--radius-lg); overflow:hidden;">
           <img src="https://lh3.googleusercontent.com/d/1d19exV3u2ECZFrssebc4spAiwenn1mr7" alt="Private Road to Loma" loading="lazy" style="width:100%;height:280px;object-fit:cover;">
           <div style="padding:1rem; background:var(--bg-card); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius-lg) var(--radius-lg);">
-            <h4 style="font-family:var(--font-heading); color:var(--text-primary); font-size:1.1rem;">Private Road to Loma</h4>
-            <p style="color:var(--text-secondary); font-size:0.85rem;">Access road to the property</p>
+            <h4 style="font-family:var(--font-heading); color:var(--text-primary); font-size:1.1rem;" data-i18n="prop.f2.h4">Private Road to Loma</h4>
+            <p style="color:var(--text-secondary); font-size:0.85rem;" data-i18n="prop.f2.p">Access road to the property</p>
           </div>
         </div>
       </div>
@@ -1647,20 +1675,20 @@
       <div class="fade-in" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:2.5rem; margin-bottom:3rem;">
         <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem;">
           <div style="width:56px;height:56px;background:linear-gradient(135deg, rgba(212,168,83,0.2), rgba(212,168,83,0.08));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">&#x1f3d8;</div>
-          <h3 style="color:var(--gold-light); font-size:1.3rem;">Costa Vida &mdash; Our Neighbors</h3>
+          <h3 style="color:var(--gold-light); font-size:1.3rem;" data-i18n="prop.cv.h3">Costa Vida &mdash; Our Neighbors</h3>
         </div>
-        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.8;">El Nido sits next to <strong style="color:var(--text-primary);">Costa Vida</strong>, a growing community of luxury eco-residences. A thriving expat community with shared values of sustainability, nature, and conscious living. Together with St. Michael's permaculture neighborhood, you become part of something larger than a single property &mdash; a movement toward a better way of living.</p>
+        <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.8;" data-i18n="prop.cv.p">El Nido sits next to <strong style="color:var(--text-primary);">Costa Vida</strong>, a growing community of luxury eco-residences. A thriving expat community with shared values of sustainability, nature, and conscious living. Together with St. Michael's permaculture neighborhood, you become part of something larger than a single property &mdash; a movement toward a better way of living.</p>
       </div>
 
       <!-- Gallery Link -->
       <div style="text-align:center; margin-bottom:3rem;" class="fade-in">
-        <a href="gallery.html" class="btn-primary" style="font-size:1.1rem; padding:1.1rem 3rem;">&#x1f4f7; View Full Gallery (76 Photos)</a>
+        <a href="gallery.html" class="btn-primary" style="font-size:1.1rem; padding:1.1rem 3rem;" data-i18n="prop.gallery.btn">&#x1f4f7; View Full Gallery (76 Photos)</a>
       </div>
 
       <!-- Video Embed -->
       <div class="section-header fade-in" style="margin-top:2rem">
-        <span class="section-subtitle">Property Tour</span>
-        <h2 style="font-size:clamp(1.4rem,3vw,2rem)">See It For Yourself</h2>
+        <span class="section-subtitle" data-i18n="prop.tour.subtitle">Property Tour</span>
+        <h2 style="font-size:clamp(1.4rem,3vw,2rem)" data-i18n="prop.tour.h2">See It For Yourself</h2>
         <div class="divider"></div>
       </div>
       <div class="video-embed fade-in">
@@ -1671,7 +1699,7 @@
           allowfullscreen
         ></iframe>
       </div>
-      <p class="video-caption">A walkthrough of El Nido and its food forest</p>
+      <p class="video-caption" data-i18n="prop.tour.caption">A walkthrough of El Nido and its food forest</p>
     </div>
   </section>
 
@@ -1681,9 +1709,9 @@
   <section id="activities" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Things to Do</span>
-        <h2>Activities Near El Nido</h2>
-        <p>From beach horseback riding to cacao ceremonies, there is no shortage of memorable experiences within an hour of El Nido.</p>
+        <span class="section-subtitle" data-i18n="act.subtitle">Things to Do</span>
+        <h2 data-i18n="act.h2">Activities Near El Nido</h2>
+        <p data-i18n="act.p">From beach horseback riding to cacao ceremonies, there is no shortage of memorable experiences within an hour of El Nido.</p>
         <div class="divider"></div>
       </div>
 
@@ -1691,92 +1719,92 @@
         <div class="rule-card">
           <div class="rule-icon">&#x1f37d;</div>
           <div>
-            <h4>Andres' Restaurant <span style="color:var(--text-muted);font-weight:400;">(5 min)</span></h4>
-            <p>Delicious local food in the jungle. Ask Andres to call his goats!</p>
+            <h4 data-i18n="act.a1.h4">Andres' Restaurant <span style="color:var(--text-muted);font-weight:400;">(5 min)</span></h4>
+            <p data-i18n="act.a1.p">Delicious local food in the jungle. Ask Andres to call his goats!</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f422;</div>
           <div>
-            <h4>Turtle Release &mdash; Playa Bandera <span style="color:var(--text-muted);font-weight:400;">(25 min)</span></h4>
-            <p>Free turtle release experience. Contact Victor Carmona to arrange.</p>
+            <h4 data-i18n="act.a2.h4">Turtle Release &mdash; Playa Bandera <span style="color:var(--text-muted);font-weight:400;">(25 min)</span></h4>
+            <p data-i18n="act.a2.p">Free turtle release experience. Contact Victor Carmona to arrange.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f412;</div>
           <div>
-            <h4>Mangrove Monkey Tour <span style="color:var(--text-muted);font-weight:400;">(35 min)</span></h4>
-            <p>~$40 per person. The monkeys literally jump on you. Unforgettable.</p>
+            <h4 data-i18n="act.a3.h4">Mangrove Monkey Tour <span style="color:var(--text-muted);font-weight:400;">(35 min)</span></h4>
+            <p data-i18n="act.a3.p">~$40 per person. The monkeys literally jump on you. Unforgettable.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f40e;</div>
           <div>
-            <h4>Horseback Riding on the Beach <span style="color:var(--text-muted);font-weight:400;">(30 min)</span></h4>
-            <p>$60 with Gustavo. Ride along pristine Pacific beaches at sunset.</p>
+            <h4 data-i18n="act.a4.h4">Horseback Riding on the Beach <span style="color:var(--text-muted);font-weight:400;">(30 min)</span></h4>
+            <p data-i18n="act.a4.p">$60 with Gustavo. Ride along pristine Pacific beaches at sunset.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f4a7;</div>
           <div>
-            <h4>Catarata El Salto Waterfall <span style="color:var(--text-muted);font-weight:400;">(20 min)</span></h4>
-            <p>$5 entrance. Beautiful waterfall with natural swimming holes.</p>
+            <h4 data-i18n="act.a5.h4">Catarata El Salto Waterfall <span style="color:var(--text-muted);font-weight:400;">(20 min)</span></h4>
+            <p data-i18n="act.a5.p">$5 entrance. Beautiful waterfall with natural swimming holes.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f40a;</div>
           <div>
-            <h4>Crocodile Bridge <span style="color:var(--text-muted);font-weight:400;">(1 hour)</span></h4>
-            <p>On the way to San Jose. See massive crocodiles from the bridge.</p>
+            <h4 data-i18n="act.a6.h4">Crocodile Bridge <span style="color:var(--text-muted);font-weight:400;">(1 hour)</span></h4>
+            <p data-i18n="act.a6.p">On the way to San Jose. See massive crocodiles from the bridge.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f3de;</div>
           <div>
-            <h4>Rainmaker <span style="color:var(--text-muted);font-weight:400;">(40 min)</span></h4>
-            <p>Amazing waterfalls, hanging bridges, and swim in the river.</p>
+            <h4 data-i18n="act.a7.h4">Rainmaker <span style="color:var(--text-muted);font-weight:400;">(40 min)</span></h4>
+            <p data-i18n="act.a7.p">Amazing waterfalls, hanging bridges, and swim in the river.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f36b;</div>
           <div>
-            <h4>Finca Divina Vida Chocolate Tour <span style="color:var(--text-muted);font-weight:400;">(40 min)</span></h4>
-            <p>Cacao ceremony and chocolate-making with Lisa. A spiritual experience.</p>
+            <h4 data-i18n="act.a8.h4">Finca Divina Vida Chocolate Tour <span style="color:var(--text-muted);font-weight:400;">(40 min)</span></h4>
+            <p data-i18n="act.a8.p">Cacao ceremony and chocolate-making with Lisa. A spiritual experience.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f331;</div>
           <div>
-            <h4>Mastatal Permaculture Community <span style="color:var(--text-muted);font-weight:400;">(45 min)</span></h4>
-            <p>Visit an established permaculture community in the mountains.</p>
+            <h4 data-i18n="act.a9.h4">Mastatal Permaculture Community <span style="color:var(--text-muted);font-weight:400;">(45 min)</span></h4>
+            <p data-i18n="act.a9.p">Visit an established permaculture community in the mountains.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f3a2;</div>
           <div>
-            <h4>El Santuario Zipline <span style="color:var(--text-muted);font-weight:400;">(1 hour)</span></h4>
-            <p>Thrilling zipline experience in Manuel Antonio's jungle canopy.</p>
+            <h4 data-i18n="act.a10.h4">El Santuario Zipline <span style="color:var(--text-muted);font-weight:400;">(1 hour)</span></h4>
+            <p data-i18n="act.a10.p">Thrilling zipline experience in Manuel Antonio's jungle canopy.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f3c4;</div>
           <div>
-            <h4>Jaco <span style="color:var(--text-muted);font-weight:400;">(50 min)</span></h4>
-            <p>Nightlife, restaurants, shopping, and surfing. Board rental ~$15/day.</p>
+            <h4 data-i18n="act.a11.h4">Jaco <span style="color:var(--text-muted);font-weight:400;">(50 min)</span></h4>
+            <p data-i18n="act.a11.p">Nightlife, restaurants, shopping, and surfing. Board rental ~$15/day.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f3a3;</div>
           <div>
-            <h4>Quepos <span style="color:var(--text-muted);font-weight:400;">(45 min)</span></h4>
-            <p>Charming fishing town with amazing fresh seafood.</p>
+            <h4 data-i18n="act.a12.h4">Quepos <span style="color:var(--text-muted);font-weight:400;">(45 min)</span></h4>
+            <p data-i18n="act.a12.p">Charming fishing town with amazing fresh seafood.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f3d6;</div>
           <div>
-            <h4>Manuel Antonio <span style="color:var(--text-muted);font-weight:400;">(55 min)</span></h4>
-            <p>Some of the world's most beautiful beaches. National park &mdash; book in advance.</p>
+            <h4 data-i18n="act.a13.h4">Manuel Antonio <span style="color:var(--text-muted);font-weight:400;">(55 min)</span></h4>
+            <p data-i18n="act.a13.p">Some of the world's most beautiful beaches. National park &mdash; book in advance.</p>
           </div>
         </div>
       </div>
@@ -1789,53 +1817,53 @@
   <section id="shares" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Share Structure</span>
-        <h2>Simple, Transparent Ownership</h2>
-        <p>El Nido is divided into 80 equal shares, each representing real equity in Th&eacute;l&egrave;me S.A. 15 points per share, 1,200 total (10 reserve for maintenance windows).</p>
+        <span class="section-subtitle" data-i18n="shares.subtitle">Share Structure</span>
+        <h2 data-i18n="shares.h2">Simple, Transparent Ownership</h2>
+        <p data-i18n="shares.p">El Nido is divided into 80 equal shares, each representing real equity in Th&eacute;l&egrave;me S.A. 15 points per share, 1,200 total (10 reserve for maintenance windows).</p>
         <div class="divider"></div>
       </div>
 
       <div class="share-grid stagger">
         <div class="share-card">
           <div class="share-number">80</div>
-          <div class="share-label">Total Shares</div>
-          <p class="share-detail">$5,000 per share<br>Real equity in the S.A.</p>
+          <div class="share-label" data-i18n="shares.s1.label">Total Shares</div>
+          <p class="share-detail" data-i18n="shares.s1.detail">$5,000 per share<br>Real equity in the S.A.</p>
         </div>
         <div class="share-card">
           <div class="share-number">15</div>
-          <div class="share-label">Points per Share / Year</div>
-          <p class="share-detail">1,200 total points across 80 shares (10 reserve)</p>
+          <div class="share-label" data-i18n="shares.s2.label">Points per Share / Year</div>
+          <p class="share-detail" data-i18n="shares.s2.detail">1,200 total points across 80 shares (10 reserve)</p>
         </div>
         <div class="share-card">
           <div class="share-number">1,210</div>
-          <div class="share-label">Total Points / Year</div>
-          <p class="share-detail">Distributed across 365 days by 4 seasonal rates</p>
+          <div class="share-label" data-i18n="shares.s3.label">Total Points / Year</div>
+          <p class="share-detail" data-i18n="shares.s3.detail">Distributed across 365 days by 4 seasonal rates</p>
         </div>
         <div class="share-card">
           <div class="share-number">&#x26d3;</div>
-          <div class="share-label">Blockchain Governed</div>
-          <p class="share-detail">Polygon-based voting, instant transfers, full transparency</p>
+          <div class="share-label" data-i18n="shares.s4.label">Blockchain Governed</div>
+          <p class="share-detail" data-i18n="shares.s4.detail">Polygon-based voting, instant transfers, full transparency</p>
         </div>
       </div>
 
       <!-- Volume Discounts -->
       <div style="text-align:center; margin-top:3rem;" class="fade-in">
-        <h3 style="color:var(--text-primary); margin-bottom:1.5rem;">Volume Discounts</h3>
+        <h3 style="color:var(--text-primary); margin-bottom:1.5rem;" data-i18n="shares.discount.title">Volume Discounts</h3>
         <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
           <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem 2rem; text-align:center;">
             <div style="font-size:1.5rem; font-weight:700; color:var(--gold);">5%</div>
-            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.25rem;">5+ shares</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.25rem;" data-i18n="shares.d5">5+ shares</div>
           </div>
           <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem 2rem; text-align:center;">
             <div style="font-size:1.5rem; font-weight:700; color:var(--gold);">10%</div>
-            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.25rem;">10+ shares</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.25rem;" data-i18n="shares.d10">10+ shares</div>
           </div>
           <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem 2rem; text-align:center;">
             <div style="font-size:1.5rem; font-weight:700; color:var(--gold);">20%</div>
-            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.25rem;">20+ shares</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.25rem;" data-i18n="shares.d20">20+ shares</div>
           </div>
         </div>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1.25rem;">Example: 1 share = 15 pts = ~2 Christmas nights or 1 week in low season</p>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1.25rem;" data-i18n="shares.example">Example: 1 share = 15 pts = ~2 Christmas nights or 1 week in low season</p>
       </div>
     </div>
   </section>
@@ -1846,9 +1874,9 @@
   <section id="calendar">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Seasonal Calendar</span>
-        <h2>Points by Season</h2>
-        <p>Your points go further in low season, and premium dates are priced to reflect demand. Plan your stay to maximize your investment. Total: 1,210 points across 365 days.</p>
+        <span class="section-subtitle" data-i18n="cal.subtitle">Seasonal Calendar</span>
+        <h2 data-i18n="cal.h2">Points by Season</h2>
+        <p data-i18n="cal.p">Your points go further in low season, and premium dates are priced to reflect demand. Plan your stay to maximize your investment. Total: 1,210 points across 365 days.</p>
         <div class="divider"></div>
       </div>
 
@@ -1950,29 +1978,29 @@
         <div class="legend-item">
           <div class="legend-dot" style="background:linear-gradient(135deg,#c62828,#d4a853);"></div>
           <div class="legend-info">
-            <h4>Christmas &amp; New Year</h4>
-            <p>Dec 19 &ndash; Jan 4 &bull; 7 pts/night &bull; 17 days</p>
+            <h4 data-i18n="cal.christmas">Christmas &amp; New Year</h4>
+            <p data-i18n="cal.christmas.detail">Dec 19 &ndash; Jan 4 &bull; 7 pts/night &bull; 17 days</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-dot" style="background:#ef6c00;"></div>
           <div class="legend-info">
-            <h4>High Season</h4>
-            <p>Jan 5 &ndash; Apr 7 &bull; 5 pts/night &bull; 93 days</p>
+            <h4 data-i18n="cal.high">High Season</h4>
+            <p data-i18n="cal.high.detail">Jan 5 &ndash; Apr 7 &bull; 5 pts/night &bull; 93 days</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-dot" style="background:#42a5f5;"></div>
           <div class="legend-info">
-            <h4>Baseline</h4>
-            <p>Jun 11 &ndash; Sep 6 &amp; Nov 21 &ndash; Dec 18 &bull; 3 pts/night &bull; 116 days</p>
+            <h4 data-i18n="cal.baseline">Baseline</h4>
+            <p data-i18n="cal.baseline.detail">Jun 11 &ndash; Sep 6 &amp; Nov 21 &ndash; Dec 18 &bull; 3 pts/night &bull; 116 days</p>
           </div>
         </div>
         <div class="legend-item">
           <div class="legend-dot" style="background:#66bb6a;"></div>
           <div class="legend-info">
-            <h4>Low Season</h4>
-            <p>Apr 8 &ndash; Jun 10 &amp; Sep 7 &ndash; Nov 20 &bull; 2 pts/night &bull; 139 days</p>
+            <h4 data-i18n="cal.low">Low Season</h4>
+            <p data-i18n="cal.low.detail">Apr 8 &ndash; Jun 10 &amp; Sep 7 &ndash; Nov 20 &bull; 2 pts/night &bull; 139 days</p>
           </div>
         </div>
       </div>
@@ -1985,48 +2013,48 @@
   <section id="tiers" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Investment Tiers</span>
-        <h2>Choose Your Level</h2>
-        <p>From a single taste of paradise to a full-time tropical residence &mdash; there's a tier for every lifestyle.</p>
+        <span class="section-subtitle" data-i18n="tiers.subtitle">Investment Tiers</span>
+        <h2 data-i18n="tiers.h2">Choose Your Level</h2>
+        <p data-i18n="tiers.p">From a single taste of paradise to a full-time tropical residence &mdash; there's a tier for every lifestyle.</p>
         <div class="divider"></div>
       </div>
 
       <div class="tier-grid stagger">
         <!-- Seedling -->
         <div class="tier-card">
-          <div class="tier-name">Seedling</div>
-          <div class="tier-shares">1 Share</div>
+          <div class="tier-name" data-i18n="tiers.t1.name">Seedling</div>
+          <div class="tier-shares" data-i18n="tiers.t1.shares">1 Share</div>
           <div class="tier-price">$5,000</div>
           <div class="tier-points"><strong>15</strong> points / year</div>
-          <div class="tier-usage">~2 Christmas nights or ~7 low-season nights</div>
+          <div class="tier-usage" data-i18n="tiers.t1.usage">~2 Christmas nights or ~7 low-season nights</div>
         </div>
         <!-- Grower -->
         <div class="tier-card">
-          <div class="tier-name">Grower</div>
-          <div class="tier-shares">5 Shares</div>
+          <div class="tier-name" data-i18n="tiers.t2.name">Grower</div>
+          <div class="tier-shares" data-i18n="tiers.t2.shares">5 Shares</div>
           <div class="tier-price">$23,750</div>
           <div class="tier-discount">5% off</div>
           <div class="tier-points"><strong>75</strong> points / year</div>
-          <div class="tier-usage">~1 month low season</div>
+          <div class="tier-usage" data-i18n="tiers.t2.usage">~1 month low season</div>
         </div>
         <!-- Harvester (Featured) -->
         <div class="tier-card featured">
-          <div class="tier-name">Harvester</div>
-          <div class="tier-shares">10 Shares</div>
+          <div class="tier-name" data-i18n="tiers.t3.name">Harvester</div>
+          <div class="tier-shares" data-i18n="tiers.t3.shares">10 Shares</div>
           <div class="tier-price">$45,000</div>
           <div class="tier-discount">10% off</div>
           <div class="tier-points"><strong>150</strong> points / year</div>
-          <div class="tier-usage">~2 months mixed seasons</div>
+          <div class="tier-usage" data-i18n="tiers.t3.usage">~2 months mixed seasons</div>
         </div>
         <!-- Steward -->
         <div class="tier-card">
-          <div class="tier-name">Steward</div>
-          <div class="tier-shares">20 Shares</div>
+          <div class="tier-name" data-i18n="tiers.t4.name">Steward</div>
+          <div class="tier-shares" data-i18n="tiers.t4.shares">20 Shares</div>
           <div class="tier-price">$80,000</div>
           <div class="tier-discount">20% off</div>
           <div class="tier-points"><strong>300</strong> points / year</div>
-          <div class="tier-usage">~4+ months of stays</div>
-          <div class="tier-extra">Includes board seat</div>
+          <div class="tier-usage" data-i18n="tiers.t4.usage">~4+ months of stays</div>
+          <div class="tier-extra" data-i18n="tiers.t4.extra">Includes board seat</div>
         </div>
       </div>
     </div>
@@ -2038,9 +2066,9 @@
   <section id="rules">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">How It Works</span>
-        <h2>Booking &amp; Stay Rules</h2>
-        <p>Simple, fair rules that make shared ownership work beautifully for everyone.</p>
+        <span class="section-subtitle" data-i18n="rules.subtitle">How It Works</span>
+        <h2 data-i18n="rules.h2">Booking &amp; Stay Rules</h2>
+        <p data-i18n="rules.p">Simple, fair rules that make shared ownership work beautifully for everyone.</p>
         <div class="divider"></div>
       </div>
 
@@ -2048,43 +2076,43 @@
         <div class="rule-card">
           <div class="rule-icon">&#x1f4c5;</div>
           <div>
-            <h4>2-Day Minimum Stay</h4>
-            <p>All bookings require a minimum of 2 nights to ensure a quality experience for everyone.</p>
+            <h4 data-i18n="rules.r1.h4">2-Day Minimum Stay</h4>
+            <p data-i18n="rules.r1.p">All bookings require a minimum of 2 nights to ensure a quality experience for everyone.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f9f9;</div>
           <div>
-            <h4>Cleaning Options</h4>
-            <p>Clean the property yourself, hire our recommended cleaner, or bring your own. Your choice.</p>
+            <h4 data-i18n="rules.r2.h4">Cleaning Options</h4>
+            <p data-i18n="rules.r2.p">Clean the property yourself, hire our recommended cleaner, or bring your own. Your choice.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f4ca;</div>
           <div>
-            <h4>Point Balance: -10 to +10</h4>
-            <p>Your balance can range from -10 to +10. Cannot book below -10. Points above +10 don't roll over to next year.</p>
+            <h4 data-i18n="rules.r3.h4">Point Balance: -10 to +10</h4>
+            <p data-i18n="rules.r3.p">Your balance can range from -10 to +10. Cannot book below -10. Points above +10 don't roll over to next year.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f4b5;</div>
           <div>
-            <h4>Rent Your Days</h4>
-            <p>List unused nights on Airbnb, VRBO, Booking, Expedia, or use HomeExchange ($235/year membership) for free stays worldwide.</p>
+            <h4 data-i18n="rules.r4.h4">Rent Your Days</h4>
+            <p data-i18n="rules.r4.p">List unused nights on Airbnb, VRBO, Booking, Expedia, or use HomeExchange ($235/year membership) for free stays worldwide.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x1f5d3;</div>
           <div>
-            <h4>Shared Calendar</h4>
-            <p>All owners access a shared yearly calendar. Book nights on a first-come, first-served basis.</p>
+            <h4 data-i18n="rules.r5.h4">Shared Calendar</h4>
+            <p data-i18n="rules.r5.p">All owners access a shared yearly calendar. Book nights on a first-come, first-served basis.</p>
           </div>
         </div>
         <div class="rule-card">
           <div class="rule-icon">&#x274c;</div>
           <div>
-            <h4>Cancellation Policy</h4>
-            <p>Cancel or modify free up to 1 month before. 50% points refunded within 1 week. None after that &mdash; unless you exchange directly with another owner.</p>
+            <h4 data-i18n="rules.r6.h4">Cancellation Policy</h4>
+            <p data-i18n="rules.r6.p">Cancel or modify free up to 1 month before. 50% points refunded within 1 week. None after that &mdash; unless you exchange directly with another owner.</p>
           </div>
         </div>
       </div>
@@ -2097,17 +2125,17 @@
   <section class="section-alt try-section">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Try Before You Buy</span>
-        <h2>Not Sure Yet?</h2>
-        <p>Experience El Nido firsthand before committing. Rent the property for a few nights and fall in love with the jungle.</p>
+        <span class="section-subtitle" data-i18n="try.subtitle">Try Before You Buy</span>
+        <h2 data-i18n="try.h2">Not Sure Yet?</h2>
+        <p data-i18n="try.p">Experience El Nido firsthand before committing. Rent the property for a few nights and fall in love with the jungle.</p>
         <div class="divider"></div>
       </div>
 
       <div class="try-box fade-in">
         <div class="try-price">$50 <span>/ night</span></div>
-        <p class="try-detail">$50/night + $45 cleaning fee per stay (not per night)</p>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1rem;">Stay, explore, meet the community. Then decide.</p>
-        <a href="https://wa.me/14087714957?text=I'm%20interested%20in%20trying%20El%20Nido%20before%20buying" class="btn-primary" style="margin-top:1.5rem;" target="_blank" rel="noopener">Book a Trial Stay</a>
+        <p class="try-detail" data-i18n="try.detail">$50/night + $45 cleaning fee per stay (not per night)</p>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1rem;" data-i18n="try.sub">Stay, explore, meet the community. Then decide.</p>
+        <a href="https://wa.me/14087714957?text=I'm%20interested%20in%20trying%20El%20Nido%20before%20buying" class="btn-primary" style="margin-top:1.5rem;" target="_blank" rel="noopener" data-i18n="try.btn">Book a Trial Stay</a>
       </div>
     </div>
   </section>
@@ -2118,31 +2146,31 @@
   <section id="maintenance">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Maintenance</span>
-        <h2>Transparent Annual Costs</h2>
-        <p>$100 per share per year &mdash; $8,000 total pool. Keeps El Nido pristine and running smoothly.</p>
+        <span class="section-subtitle" data-i18n="maint.subtitle">Maintenance</span>
+        <h2 data-i18n="maint.h2">Transparent Annual Costs</h2>
+        <p data-i18n="maint.p">$100 per share per year &mdash; $8,000 total pool. Keeps El Nido pristine and running smoothly.</p>
         <div class="divider"></div>
       </div>
 
       <div class="maintenance-grid stagger">
         <div class="maintenance-card">
-          <h3>&#x1f4b5; What's Covered</h3>
-          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">$100/share/year &mdash; $8,000 total pool (80 shares)</p>
+          <h3 data-i18n="maint.c1.h3">&#x1f4b5; What's Covered</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;" data-i18n="maint.c1.sub">$100/share/year &mdash; $8,000 total pool (80 shares)</p>
           <ul>
-            <li>Water supply</li>
-            <li>High-speed Starlink internet</li>
-            <li>Gardening once a month</li>
-            <li>Basic repairs and maintenance</li>
+            <li data-i18n="maint.c1.li1">Water supply</li>
+            <li data-i18n="maint.c1.li2">High-speed Starlink internet</li>
+            <li data-i18n="maint.c1.li3">Gardening once a month</li>
+            <li data-i18n="maint.c1.li4">Basic repairs and maintenance</li>
           </ul>
         </div>
         <div class="maintenance-card">
-          <h3>&#x1f331; Owner Responsibilities</h3>
-          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">Treat the property like your own home</p>
+          <h3 data-i18n="maint.c2.h3">&#x1f331; Owner Responsibilities</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;" data-i18n="maint.c2.sub">Treat the property like your own home</p>
           <ul>
-            <li>Pay your own electricity during stays (metered)</li>
-            <li>Keep improving the property</li>
-            <li>Pick fruits from the food forest during your stay</li>
-            <li>Leave it better than you found it</li>
+            <li data-i18n="maint.c2.li1">Pay your own electricity during stays (metered)</li>
+            <li data-i18n="maint.c2.li2">Keep improving the property</li>
+            <li data-i18n="maint.c2.li3">Pick fruits from the food forest during your stay</li>
+            <li data-i18n="maint.c2.li4">Leave it better than you found it</li>
           </ul>
         </div>
       </div>
@@ -2155,9 +2183,9 @@
   <section id="governance" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Governance</span>
-        <h2>Democracy on the Blockchain</h2>
-        <p>Every share is one vote. All decisions are transparent, recorded on-chain, and enforced by smart contracts.</p>
+        <span class="section-subtitle" data-i18n="gov.subtitle">Governance</span>
+        <h2 data-i18n="gov.h2">Democracy on the Blockchain</h2>
+        <p data-i18n="gov.p">Every share is one vote. All decisions are transparent, recorded on-chain, and enforced by smart contracts.</p>
         <div class="divider"></div>
       </div>
 
@@ -2165,50 +2193,50 @@
         <div class="gov-item">
           <div class="gov-icon">&#x1f465;</div>
           <div>
-            <h4>New Member Buy-In</h4>
-            <p>Requires majority vote from existing members. The community chooses who joins.</p>
+            <h4 data-i18n="gov.g1.h4">New Member Buy-In</h4>
+            <p data-i18n="gov.g1.p">Requires majority vote from existing members. The community chooses who joins.</p>
           </div>
         </div>
         <div class="gov-item">
           <div class="gov-icon">&#x1f4c8;</div>
           <div>
-            <h4>Share Price Appreciation</h4>
-            <p>Share prices expected to rise ~10%/year, reflecting property improvements and market appreciation.</p>
+            <h4 data-i18n="gov.g2.h4">Share Price Appreciation</h4>
+            <p data-i18n="gov.g2.p">Share prices expected to rise ~10%/year, reflecting property improvements and market appreciation.</p>
           </div>
         </div>
         <div class="gov-item">
           <div class="gov-icon">&#x1f5f3;</div>
           <div>
-            <h4>New Assessments</h4>
-            <p>Require majority vote to approve. Once approved, assessments become mandatory for all members.</p>
+            <h4 data-i18n="gov.g3.h4">New Assessments</h4>
+            <p data-i18n="gov.g3.p">Require majority vote to approve. Once approved, assessments become mandatory for all members.</p>
           </div>
         </div>
         <div class="gov-item">
           <div class="gov-icon">&#x1f6e1;</div>
           <div>
-            <h4>Member Removal</h4>
-            <p>If a member is judged harmful: 67% vote triggers buyback at original purchase price.</p>
+            <h4 data-i18n="gov.g4.h4">Member Removal</h4>
+            <p data-i18n="gov.g4.p">If a member is judged harmful: 67% vote triggers buyback at original purchase price.</p>
           </div>
         </div>
         <div class="gov-item">
           <div class="gov-icon">&#x1f527;</div>
           <div>
-            <h4>Special Improvements</h4>
-            <p>A member who makes improvements can request payment via majority vote, paid from HOA funds or special assessment.</p>
+            <h4 data-i18n="gov.g5.h4">Special Improvements</h4>
+            <p data-i18n="gov.g5.p">A member who makes improvements can request payment via majority vote, paid from HOA funds or special assessment.</p>
           </div>
         </div>
         <div class="gov-item">
           <div class="gov-icon">&#x23f0;</div>
           <div>
-            <h4>Late Dues Enforcement</h4>
-            <p>Late dues &gt;1 year: balance paid from home equity with 20% premium using last approved share price. Fractional shares tracked to 2 decimals. Balance below zero = membership terminated.</p>
+            <h4 data-i18n="gov.g6.h4">Late Dues Enforcement</h4>
+            <p data-i18n="gov.g6.p">Late dues &gt;1 year: balance paid from home equity with 20% premium using last approved share price. Fractional shares tracked to 2 decimals. Balance below zero = membership terminated.</p>
           </div>
         </div>
       </div>
 
       <div class="gov-detail fade-in">
         <span class="chain-badge">Polygon Blockchain</span>
-        <span style="color:var(--text-secondary); font-size:0.9rem;">1 Share = 1 Vote &bull; Transparent &bull; Instant Transfers &bull; Immutable Record</span>
+        <span style="color:var(--text-secondary); font-size:0.9rem;" data-i18n="gov.chain">1 Share = 1 Vote &bull; Transparent &bull; Instant Transfers &bull; Immutable Record</span>
       </div>
     </div>
   </section>
@@ -2219,8 +2247,8 @@
   <section id="benefits">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Benefits</span>
-        <h2>Why El Nido?</h2>
+        <span class="section-subtitle" data-i18n="ben.subtitle">Benefits</span>
+        <h2 data-i18n="ben.h2">Why El Nido?</h2>
         <div class="divider"></div>
       </div>
 
@@ -2228,120 +2256,120 @@
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f3e0;</div>
           <div>
-            <h4>Real Equity Ownership</h4>
-            <p>Not a timeshare &mdash; actual shares in a Costa Rican corporation with real asset backing</p>
+            <h4 data-i18n="ben.b1.h4">Real Equity Ownership</h4>
+            <p data-i18n="ben.b1.p">Not a timeshare &mdash; actual shares in a Costa Rican corporation with real asset backing</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f91d;</div>
           <div>
-            <h4>Permaculture Community</h4>
-            <p>A community of permaculture lovers improving the property together</p>
+            <h4 data-i18n="ben.b2.h4">Permaculture Community</h4>
+            <p data-i18n="ben.b2.p">A community of permaculture lovers improving the property together</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f5f3;</div>
           <div>
-            <h4>Democratic Blockchain Governance</h4>
-            <p>Every share = 1 vote. Fully transparent, on-chain decision-making</p>
+            <h4 data-i18n="ben.b3.h4">Democratic Blockchain Governance</h4>
+            <p data-i18n="ben.b3.p">Every share = 1 vote. Fully transparent, on-chain decision-making</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4b8;</div>
           <div>
-            <h4>Rental Income</h4>
-            <p>Rent unused nights on Airbnb, VRBO, Booking &mdash; your shares earn while you're away</p>
+            <h4 data-i18n="ben.b4.h4">Rental Income</h4>
+            <p data-i18n="ben.b4.p">Rent unused nights on Airbnb, VRBO, Booking &mdash; your shares earn while you're away</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f30d;</div>
           <div>
-            <h4>HomeExchange Integration</h4>
-            <p>$235/year membership unlocks free travel worldwide using your ownership nights</p>
+            <h4 data-i18n="ben.b5.h4">HomeExchange Integration</h4>
+            <p data-i18n="ben.b5.p">$235/year membership unlocks free travel worldwide using your ownership nights</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4c8;</div>
           <div>
-            <h4>~10%/Year Appreciation</h4>
-            <p>Costa Rica's Central Pacific region continues to appreciate steadily</p>
+            <h4 data-i18n="ben.b6.h4">~10%/Year Appreciation</h4>
+            <p data-i18n="ben.b6.p">Costa Rica's Central Pacific region continues to appreciate steadily</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4dd;</div>
           <div>
-            <h4>No Transfer Tax</h4>
-            <p>Share transfers via blockchain &mdash; no government transfer tax on sales</p>
+            <h4 data-i18n="ben.b7.h4">No Transfer Tax</h4>
+            <p data-i18n="ben.b7.p">Share transfers via blockchain &mdash; no government transfer tax on sales</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f3e8;</div>
           <div>
-            <h4>Try Before You Buy</h4>
-            <p>Rent for $50/night to experience El Nido firsthand before investing</p>
+            <h4 data-i18n="ben.b8.h4">Try Before You Buy</h4>
+            <p data-i18n="ben.b8.p">Rent for $50/night to experience El Nido firsthand before investing</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4f6;</div>
           <div>
-            <h4>Starlink Internet</h4>
-            <p>Work from paradise &mdash; high-speed satellite internet for digital nomads</p>
+            <h4 data-i18n="ben.b9.h4">Starlink Internet</h4>
+            <p data-i18n="ben.b9.p">Work from paradise &mdash; high-speed satellite internet for digital nomads</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f34a;</div>
           <div>
-            <h4>Year-Round Food Forest</h4>
-            <p>Pick your own fruit &mdash; bananas, mangos, cacao, papayas, and more</p>
+            <h4 data-i18n="ben.b10.h4">Year-Round Food Forest</h4>
+            <p data-i18n="ben.b10.p">Pick your own fruit &mdash; bananas, mangos, cacao, papayas, and more</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f9d8;</div>
           <div>
-            <h4>Walking Distance to Eco-Retreat</h4>
-            <p>Selvatica Eco-Retreat offers yoga, ice baths, and wellness programs</p>
+            <h4 data-i18n="ben.b11.h4">Walking Distance to Eco-Retreat</h4>
+            <p data-i18n="ben.b11.p">Selvatica Eco-Retreat offers yoga, ice baths, and wellness programs</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4a7;</div>
           <div>
-            <h4>Triple Water Security</h4>
-            <p>Community supply + private spring + rainwater &mdash; never worry about water</p>
+            <h4 data-i18n="ben.b12.h4">Triple Water Security</h4>
+            <p data-i18n="ben.b12.p">Community supply + private spring + rainwater &mdash; never worry about water</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f4bb;</div>
           <div>
-            <h4>Owner Intranet</h4>
-            <p>Shared calendar, community updates, activities, and useful tips for owners</p>
+            <h4 data-i18n="ben.b13.h4">Owner Intranet</h4>
+            <p data-i18n="ben.b13.p">Shared calendar, community updates, activities, and useful tips for owners</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f465;</div>
           <div>
-            <h4>Join a Community</h4>
-            <p>Be part of a community of like-minded individuals who share your values</p>
+            <h4 data-i18n="ben.b14.h4">Join a Community</h4>
+            <p data-i18n="ben.b14.p">Be part of a community of like-minded individuals who share your values</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f513;</div>
           <div>
-            <h4>Easy Access to Ownership</h4>
-            <p>Only $5,000 required to start &mdash; buy more shares later to increase your ownership</p>
+            <h4 data-i18n="ben.b15.h4">Easy Access to Ownership</h4>
+            <p data-i18n="ben.b15.p">Only $5,000 required to start &mdash; buy more shares later to increase your ownership</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f3d6;</div>
           <div>
-            <h4>Pristine Pacific Beaches</h4>
-            <p>Easy access to Costa Rica's stunning Pacific coastline &mdash; just 20 minutes away</p>
+            <h4 data-i18n="ben.b16.h4">Pristine Pacific Beaches</h4>
+            <p data-i18n="ben.b16.p">Easy access to Costa Rica's stunning Pacific coastline &mdash; just 20 minutes away</p>
           </div>
         </div>
         <div class="benefit-item">
           <div class="benefit-icon">&#x1f334;</div>
           <div>
-            <h4>Pura Vida Lifestyle</h4>
-            <p>Embrace the Costa Rican way of life &mdash; slow down, connect with nature, live well</p>
+            <h4 data-i18n="ben.b17.h4">Pura Vida Lifestyle</h4>
+            <p data-i18n="ben.b17.p">Embrace the Costa Rican way of life &mdash; slow down, connect with nature, live well</p>
           </div>
         </div>
       </div>
@@ -2354,52 +2382,52 @@
   <section class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Who Is This For?</span>
-        <h2>Find Your People</h2>
-        <p>El Nido attracts a diverse community united by a love of nature, sustainability, and the good life.</p>
+        <span class="section-subtitle" data-i18n="aud.subtitle">Who Is This For?</span>
+        <h2 data-i18n="aud.h2">Find Your People</h2>
+        <p data-i18n="aud.p">El Nido attracts a diverse community united by a love of nature, sustainability, and the good life.</p>
         <div class="divider"></div>
       </div>
 
       <div class="audience-grid stagger">
         <div class="audience-card">
           <div class="audience-icon">&#x1f4bb;</div>
-          <h4>Digital Nomads</h4>
-          <p>Seeking work-life balance with Starlink internet in paradise</p>
+          <h4 data-i18n="aud.a1.h4">Digital Nomads</h4>
+          <p data-i18n="aud.a1.p">Seeking work-life balance with Starlink internet in paradise</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">&#x1f334;</div>
-          <h4>Retirees</h4>
-          <p>Ready for the Pura Vida lifestyle in warm, welcoming Costa Rica</p>
+          <h4 data-i18n="aud.a2.h4">Retirees</h4>
+          <p data-i18n="aud.a2.p">Ready for the Pura Vida lifestyle in warm, welcoming Costa Rica</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">&#x1f33f;</div>
-          <h4>Permaculture Enthusiasts</h4>
-          <p>Hands-on involvement with an established food forest and greenhouse</p>
+          <h4 data-i18n="aud.a3.h4">Permaculture Enthusiasts</h4>
+          <p data-i18n="aud.a3.p">Hands-on involvement with an established food forest and greenhouse</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">&#x1f496;</div>
-          <h4>Couples</h4>
-          <p>Dreaming of sustainable living together in a tropical setting</p>
+          <h4 data-i18n="aud.a4.h4">Couples</h4>
+          <p data-i18n="aud.a4.p">Dreaming of sustainable living together in a tropical setting</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">&#x1f9d8;</div>
-          <h4>Wellness Seekers</h4>
-          <p>Near yoga retreats, ice baths, and nature therapy</p>
+          <h4 data-i18n="aud.a5.h4">Wellness Seekers</h4>
+          <p data-i18n="aud.a5.p">Near yoga retreats, ice baths, and nature therapy</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">&#x1f99c;</div>
-          <h4>Nature Lovers</h4>
-          <p>Wildlife in your backyard &mdash; toucans, macaws, monkeys, sloths</p>
+          <h4 data-i18n="aud.a6.h4">Nature Lovers</h4>
+          <p data-i18n="aud.a6.p">Wildlife in your backyard &mdash; toucans, macaws, monkeys, sloths</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">&#x1f4c8;</div>
-          <h4>Investors</h4>
-          <p>Costa Rica's growing Central Pacific region offers strong appreciation</p>
+          <h4 data-i18n="aud.a7.h4">Investors</h4>
+          <p data-i18n="aud.a7.p">Costa Rica's growing Central Pacific region offers strong appreciation</p>
         </div>
         <div class="audience-card">
           <div class="audience-icon">&#x1f91d;</div>
-          <h4>Community Lovers</h4>
-          <p>Seeking meaningful connections and shared purpose in a like-minded community</p>
+          <h4 data-i18n="aud.a8.h4">Community Lovers</h4>
+          <p data-i18n="aud.a8.p">Seeking meaningful connections and shared purpose in a like-minded community</p>
         </div>
       </div>
     </div>
@@ -2411,27 +2439,27 @@
   <section id="intranet">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Owner Intranet</span>
-        <h2>Your Digital Home Base</h2>
-        <p>All owners get access to a private intranet with everything you need to plan, connect, and enjoy.</p>
+        <span class="section-subtitle" data-i18n="int.subtitle">Owner Intranet</span>
+        <h2 data-i18n="int.h2">Your Digital Home Base</h2>
+        <p data-i18n="int.p">All owners get access to a private intranet with everything you need to plan, connect, and enjoy.</p>
         <div class="divider"></div>
       </div>
 
       <div class="intranet-features stagger">
         <div class="intranet-card">
           <div class="intranet-icon">&#x1f5d3;</div>
-          <h4>Reservation Calendar</h4>
-          <p>See availability at a glance and book your dates instantly on a shared calendar.</p>
+          <h4 data-i18n="int.i1.h4">Reservation Calendar</h4>
+          <p data-i18n="int.i1.p">See availability at a glance and book your dates instantly on a shared calendar.</p>
         </div>
         <div class="intranet-card">
           <div class="intranet-icon">&#x1f4ac;</div>
-          <h4>Community Updates &amp; Discussion</h4>
-          <p>Stay connected with fellow owners. Share updates, ideas, and coordinate improvements.</p>
+          <h4 data-i18n="int.i2.h4">Community Updates &amp; Discussion</h4>
+          <p data-i18n="int.i2.p">Stay connected with fellow owners. Share updates, ideas, and coordinate improvements.</p>
         </div>
         <div class="intranet-card">
           <div class="intranet-icon">&#x1f3af;</div>
-          <h4>Activities, Restaurants &amp; Tips</h4>
-          <p>Curated list of fun things to do, great restaurants within 1 hour, and useful local tips.</p>
+          <h4 data-i18n="int.i3.h4">Activities, Restaurants &amp; Tips</h4>
+          <p data-i18n="int.i3.p">Curated list of fun things to do, great restaurants within 1 hour, and useful local tips.</p>
         </div>
       </div>
     </div>
@@ -2443,63 +2471,63 @@
   <section id="faq" class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">FAQ</span>
-        <h2>Common Questions</h2>
+        <span class="section-subtitle" data-i18n="faq.subtitle">FAQ</span>
+        <h2 data-i18n="faq.h2">Common Questions</h2>
         <div class="divider"></div>
       </div>
 
       <div class="faq-list">
         <details class="faq-item">
-          <summary>Is this a timeshare?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q1">Is this a timeshare?</summary>
+          <div class="faq-answer" data-i18n="faq.a1">
             No. You purchase real shares in Th&eacute;l&egrave;me S.A., a Costa Rican corporation that owns the property. This is actual equity ownership &mdash; you can sell your shares, earn appreciation, and vote on all decisions.
           </div>
         </details>
         <details class="faq-item">
-          <summary>How do points work?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q2">How do points work?</summary>
+          <div class="faq-answer" data-i18n="faq.a2">
             Each share comes with 15 points per year. Nights cost 2&ndash;7 points depending on season. Your point balance can range from -10 to +10. Points above +10 don't roll over. You cannot book if your balance is below -10.
           </div>
         </details>
         <details class="faq-item">
-          <summary>Can I rent out my nights?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q3">Can I rent out my nights?</summary>
+          <div class="faq-answer" data-i18n="faq.a3">
             Absolutely. You can list your unused nights on Airbnb, VRBO, Booking.com, or Expedia. You can also join HomeExchange ($235/year) to swap your nights for free stays at properties worldwide.
           </div>
         </details>
         <details class="faq-item">
-          <summary>How is the property governed?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q4">How is the property governed?</summary>
+          <div class="faq-answer" data-i18n="faq.a4">
             Democratically via blockchain. Every share equals one vote. New members require majority approval. New assessments require majority vote. A member judged harmful can be removed with a 67% vote and bought back at original purchase price.
           </div>
         </details>
         <details class="faq-item">
-          <summary>What happens if I want to sell?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q5">What happens if I want to sell?</summary>
+          <div class="faq-answer" data-i18n="faq.a5">
             You can sell your shares at any time. Share transfers happen via blockchain with no government transfer tax. Share prices are expected to appreciate ~10% per year, so your investment grows over time.
           </div>
         </details>
         <details class="faq-item">
-          <summary>What does the maintenance fee cover?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q6">What does the maintenance fee cover?</summary>
+          <div class="faq-answer" data-i18n="faq.a6">
             $100/share/year covers water supply, Starlink internet, monthly gardening, and basic repairs. Each owner pays their own electricity (metered) during stays. The total pool is $8,000/year across all 80 shares.
           </div>
         </details>
         <details class="faq-item">
-          <summary>Can I try before I buy?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q7">Can I try before I buy?</summary>
+          <div class="faq-answer" data-i18n="faq.a7">
             Yes! Rent El Nido for $50/night + $45 cleaning fee per stay (not per night). Experience the property, meet the community, and then decide if ownership is right for you.
           </div>
         </details>
         <details class="faq-item">
-          <summary>What's the cancellation policy?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q8">What's the cancellation policy?</summary>
+          <div class="faq-answer" data-i18n="faq.a8">
             Cancel or modify free up to 1 month before your stay. Within 1 week of check-in, 50% of points are refunded. After that, points are not refundable unless you arrange a direct exchange with another owner.
           </div>
         </details>
         <details class="faq-item">
-          <summary>Is there internet for remote work?</summary>
-          <div class="faq-answer">
+          <summary data-i18n="faq.q9">Is there internet for remote work?</summary>
+          <div class="faq-answer" data-i18n="faq.a9">
             Yes. El Nido has Starlink high-speed satellite internet, making it fully digital-nomad ready. Work from the ocean-view deck with toucans flying by.
           </div>
         </details>
@@ -2513,7 +2541,7 @@
   <div class="closing-banner fade-in">
     <div class="container">
       <blockquote>
-        &ldquo;This isn't just real estate &mdash; it's a lifestyle upgrade. In 10 years, you'll wish you bought this property today.&rdquo;
+        <span data-i18n="closing.quote">&ldquo;This isn't just real estate &mdash; it's a lifestyle upgrade. In 10 years, you'll wish you bought this property today.&rdquo;</span>
       </blockquote>
     </div>
   </div>
@@ -2524,36 +2552,36 @@
   <section id="contact">
     <div class="container">
       <div class="section-header fade-in">
-        <span class="section-subtitle">Get in Touch</span>
-        <h2>Ready to Own Paradise?</h2>
-        <p>Send us a message or connect on WhatsApp. We speak English, Espa&ntilde;ol, and Fran&ccedil;ais.</p>
+        <span class="section-subtitle" data-i18n="contact.subtitle">Get in Touch</span>
+        <h2 data-i18n="contact.h2">Ready to Own Paradise?</h2>
+        <p data-i18n="contact.p">Send us a message or connect on WhatsApp. We speak English, Espa&ntilde;ol, and Fran&ccedil;ais.</p>
         <div class="divider"></div>
       </div>
 
       <div class="contact-form fade-in">
         <form action="https://formspree.io/f/vaillant@ushaia.com" method="POST">
           <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Full name" required>
+            <label for="name" data-i18n="contact.label.name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Full name" data-i18n-ph="contact.ph.name" required>
           </div>
           <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="email@example.com" required>
+            <label for="email" data-i18n="contact.label.email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com" data-i18n-ph="contact.ph.email" required>
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell us about your interest in El Nido..." required></textarea>
+            <label for="message" data-i18n="contact.label.msg">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your interest in El Nido..." data-i18n-ph="contact.ph.msg" required></textarea>
           </div>
           <div style="text-align:center;">
-            <button type="submit" class="btn-primary">Send Message</button>
+            <button type="submit" class="btn-primary" data-i18n="contact.submit">Send Message</button>
           </div>
         </form>
 
         <div class="contact-buttons">
-          <a href="https://wa.me/14087714957" class="btn-whatsapp" target="_blank" rel="noopener">
+          <a href="https://wa.me/14087714957" class="btn-whatsapp" target="_blank" rel="noopener" data-i18n="contact.whatsapp">
             &#x1f4ac; Chat on WhatsApp
           </a>
-          <a href="mailto:vaillant@ushaia.com" class="btn-secondary">
+          <a href="mailto:vaillant@ushaia.com" class="btn-secondary" data-i18n="contact.email">
             &#x2709; Send Email
           </a>
         </div>
@@ -2574,9 +2602,9 @@
     <div class="container">
       <div class="footer-bottom">
         <p class="footer-disclaimer">
-          El Nido Fractional Ownership is offered through Th&eacute;l&egrave;me S.A., a Costa Rican corporation. This is not a securities offering. Each share represents equity ownership in the corporation. Past property appreciation is not a guarantee of future returns. Share prices and rental income may vary. Consult a legal or financial advisor before investing.
+          <span data-i18n="footer.disclaimer">El Nido Fractional Ownership is offered through Th&eacute;l&egrave;me S.A., a Costa Rican corporation. This is not a securities offering. Each share represents equity ownership in the corporation. Past property appreciation is not a guarantee of future returns. Share prices and rental income may vary. Consult a legal or financial advisor before investing.</span>
         </p>
-        <p style="color:var(--text-muted); font-size:0.75rem; margin-top:1rem;">&copy; 2025 Th&eacute;l&egrave;me S.A. &mdash; El Nido, St. Michael's Sustainable Community, Costa Rica</p>
+        <p style="color:var(--text-muted); font-size:0.75rem; margin-top:1rem;" data-i18n="footer.copy">&copy; 2025 Th&eacute;l&egrave;me S.A. &mdash; El Nido, St. Michael's Sustainable Community, Costa Rica</p>
       </div>
     </div>
   </footer>
@@ -2628,6 +2656,7 @@
       });
     });
   </script>
+  <script src="i18n.js"></script>
 
 </body>
 </html>
